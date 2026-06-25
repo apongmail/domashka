@@ -11,18 +11,18 @@
 ## Структура
 
 ```
-devops-frameworks-sdlc-research/
-├── report.md     # повний звіт (8 розділів)
-├── README.md     # цей файл
+domashka-01/
+├── report_domashka-01.md     # повний звіт (8 розділів)
+├── README_domashka-01.md     # цей файл
 └── docs/
-    └── sources.md  # перелік першоджерел
+    └── sources_domashka-01.md  # перелік першоджерел
 ```
 
 ## Як читати
 
-Основний документ — [`report.md`](report.md). Він містить:
+Основний документ — [`report_domashka-01.md`](report_domashka-01.md). Він містить:
 - розшифровку CALMS (Culture, Automation, Lean, Measurement, Sharing);
 - список з 11 інших фреймворків (Three Ways, DORA, SPACE, SRE, ITIL, Agile тощо);
 - резюме SDLC (визначення, 6 фаз, моделі, тези) з посиланнями.
 
-Усі першоджерела — у розділі 8 звіту та у [`docs/sources.md`](docs/sources.md).
+Усі першоджерела — у розділі 8 звіту та у [`docs/sources_domashka-01.md`](docs/sources_domashka-01.md).
