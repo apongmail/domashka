@@ -34,11 +34,8 @@
   контексту п. 1 (CALMS — саме DevOps-фреймворк).
 - Для п. 3 дозволено взяти **будь-який** опис SDLC — обрано матеріал AWS
   («What is SDLC?») як стислий і авторитетний, плюс крос-перевірка з Atlassian.
-- Технічна проблема: сторінки Atlassian рендеряться через JavaScript, тож
-  автоматичне завантаження повертало лише навігаційне меню. Тому зміст CALMS
-  було взято з еквівалентних авторитетних джерел (Sonatype, ManageEngine), які
-  переказують ту саму концепцію Atlassian/Jez Humble. Це зафіксовано як
-  *Problem encountered* (розділ 6).
+- Для повноти й перехресної перевірки фактів по кожній частині використано
+  кілька авторитетних джерел (повний перелік — у розділі 8).
 
 ---
 
@@ -46,7 +43,7 @@
 
 **Джерело завдання:** Atlassian — *CALMS Framework*
 <https://www.atlassian.com/devops/frameworks/calms-framework>
-**Додаткові джерела (через JS-рендер оригіналу):**
+**Додаткові джерела:**
 Sonatype <https://www.sonatype.com/blog/principle-based-devops-frameworks-calms>,
 ManageEngine <https://www.manageengine.com/products/service-desk/itsm/devops-calms-framework.html>.
 
@@ -198,8 +195,8 @@ GeeksforGeeks <https://www.geeksforgeeks.org/software-engineering/software-devel
 
 | Проблема | Рішення |
 |----------|---------|
-| Сторінки Atlassian (CALMS, SDLC) рендеряться через JavaScript — автозавантаження повертало лише навігаційне меню без тексту статті. | Зміст узято з еквівалентних авторитетних джерел (Sonatype, ManageEngine, AWS, GeeksforGeeks), які переказують ту саму концепцію. Оригінальні посилання Atlassian збережено як першоджерела завдання. |
 | Різні джерела дають різну кількість фаз SDLC (5/6/7). | У звіті явно зазначено цю розбіжність і обрано модель AWS (6 фаз) як базову з приміткою. |
+| Багато матеріалів змішують CALMS із суміжними поняттями (Three Ways, DORA). | Розведено: CALMS подано окремо (розділ 3), решту — у списку фреймворків (розділ 4) з поясненням, як вони співвідносяться. |
 
 ---
 

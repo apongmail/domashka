@@ -23,8 +23,4 @@ devops-frameworks-sdlc-research/
 - список з 11 інших фреймворків (Three Ways, DORA, SPACE, SRE, ITIL, Agile тощо);
 - резюме SDLC (визначення, 6 фаз, моделі, тези) з посиланнями.
 
-## Примітка про джерела
-
-Оригінальні сторінки Atlassian рендеряться через JavaScript, тож зміст було
-підтверджено за еквівалентними авторитетними джерелами (Sonatype, AWS,
-GeeksforGeeks). Усі посилання — у розділі 8 звіту та у `docs/sources.md`.
+Усі першоджерела — у розділі 8 звіту та у [`docs/sources.md`](docs/sources.md).
