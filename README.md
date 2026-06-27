@@ -9,6 +9,7 @@
 | № | Тема | Тека |
 |---|------|------|
 | 1 | DevOps-фреймворки (CALMS та інші) і SDLC | [`domashka-01/`](domashka-01/) |
+| 2 | Agile Manifesto vs. мій робочий процес | [`domashka-02/`](domashka-02/) |
 
 > Кожна домашка лежить в окремій теці `domashka-NN/`, а файли мають суфікс
 > `_domashka-NN` (напр. `report_domashka-01.md`, `report_domashka-01.pdf`).
