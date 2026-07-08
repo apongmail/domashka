@@ -40,8 +40,10 @@ $ git config --global user.email
 
 Повний вивід `git config --global --list` та `gh auth status` — у файлі
 [docs/git-client-info.txt](docs/git-client-info.txt).
-Скріншот термінала з версією і налаштуваннями — у
-[docs/](docs/).
+
+Скріншот термінала з версією і налаштуваннями:
+
+![Версія git та налаштування](docs/git-client-screenshot.png)
 
 Автентифікація до GitHub налаштована через GitHub CLI
 (`credential.helper = gh auth git-credential`), тобто git використовує
@@ -67,4 +69,4 @@ https://github.com/apongmail/spring-petclinic
 | Акаунт GitHub | https://github.com/apongmail |
 | Публічний репозиторій | https://github.com/apongmail/domashka |
 | Форк spring-petclinic | https://github.com/apongmail/spring-petclinic |
-| Версія та налаштування git | [docs/git-client-info.txt](docs/git-client-info.txt) + скріншот у docs/ |
+| Версія та налаштування git | [скріншот](docs/git-client-screenshot.png) + [docs/git-client-info.txt](docs/git-client-info.txt) |
