@@ -186,14 +186,36 @@ $ ping -c 3 -s 2000 github.com        # 2028 > MTU, але БЕЗ DF
 коли з маршруту прилітає ICMP "fragmentation needed". Повний вивід:
 [docs/mtu-ping-output.txt](docs/mtu-ping-output.txt).
 
-## 9. Wireshark
+## 9. Wireshark — той самий handshake у GUI
 
-Встановлення `brew install --cask wireshark` вимагає інтерактивного
-sudo-пароля (пакет інсталера), тому виконується вручну. Той самий handshake
-у GUI можна побачити так: запустити Wireshark → інтерфейс en0 → фільтр
-`tcp.flags.syn == 1 && ip.addr == 140.82.112.0/20` (або просто
-`tcp.port == 443`) → виконати `curl https://github.com` → перші три пакети
-списку і будуть SYN / SYN-ACK / ACK, ті самі, що в розділі 4.
+Встановлено Wireshark 4.6.7 (`brew install --cask wireshark`; разом з ним
+ставиться ChmodBPF, після чого захоплення працює без sudo). Запуск одразу
+із захопленням і тим самим фільтром, що в tcpdump:
+
+```
+$ open -a Wireshark --args -i en0 -k -f "tcp and net 140.82.112.0/20"
+$ curl -s -o /dev/null https://github.com
+```
+
+Перші три пакети списку — той самий three-way handshake, четвертий —
+TLS Client Hello з SNI=github.com:
+
+![Handshake у Wireshark](docs/wireshark-handshake.png)
+
+**Що видно:** Wireshark розписує прапори повними назвами — те, що tcpdump
+показував як `[SEW]` / `[S.E]` / `[.]`, тут підписано `[SYN, ECE, CWR]` /
+`[SYN, ACK, ECE]` / `[ACK]`. У панелі деталей для Frame 1 (SYN) видно
+Ethernet-заголовок: Src `46:c0:a4:4b:9b:6b` (MAC ноутбука) →
+Dst `b0:e4:d5:43:f3:c8` — це MAC шлюзу з розділу 5, жива ілюстрація до
+пояснення «MAC vs IP»: кадр до GitHub фізично адресований роутеру.
+Wireshark навіть підказує вендора шлюзу — `Google_43:f3:c8` (Nest Wifi).
+
+Дзеркальна картина у Frame 2 (SYN-ACK): там source MAC — вже шлюз
+`b0:e4:d5:43:f3:c8`, а destination — ноутбук
+([docs/wireshark-synack-frame.png](docs/wireshark-synack-frame.png),
+[docs/wireshark-ack-frame.png](docs/wireshark-ack-frame.png)).
+Кінець тієї ж сесії — обмін `[FIN, ACK]` з обох боків і фінальний `[RST]`
+(закриття з'єднання): [docs/wireshark-session.png](docs/wireshark-session.png).
 
 ---
 
@@ -205,4 +227,4 @@ sudo-пароля (пакет інсталера), тому виконуєтьс
 | Хопів | 10 (ICMP traceroute) |
 | Шлюз | 10.20.50.1 (en0) |
 | MAC шлюзу | b0:e4:d5:43:f3:c8 |
-| Handshake | SYN → SYN-ACK → ACK (tcpdump, розділ 4) |
+| Handshake | SYN → SYN-ACK → ACK (tcpdump, розділ 4; Wireshark, розділ 9) |
