@@ -211,11 +211,18 @@ Dst `b0:e4:d5:43:f3:c8` — це MAC шлюзу з розділу 5, жива і
 Wireshark навіть підказує вендора шлюзу — `Google_43:f3:c8` (Nest Wifi).
 
 Дзеркальна картина у Frame 2 (SYN-ACK): там source MAC — вже шлюз
-`b0:e4:d5:43:f3:c8`, а destination — ноутбук
-([docs/wireshark-synack-frame.png](docs/wireshark-synack-frame.png),
-[docs/wireshark-ack-frame.png](docs/wireshark-ack-frame.png)).
+`b0:e4:d5:43:f3:c8`, а destination — ноутбук:
+
+![Frame 2 — SYN-ACK, source MAC = шлюз](docs/wireshark-synack-frame.png)
+
+Frame 3 — фінальний ACK (Seq=1, Ack=1, Len=0), з'єднання встановлене:
+
+![Frame 3 — ACK](docs/wireshark-ack-frame.png)
+
 Кінець тієї ж сесії — обмін `[FIN, ACK]` з обох боків і фінальний `[RST]`
-(закриття з'єднання): [docs/wireshark-session.png](docs/wireshark-session.png).
+(закриття з'єднання):
+
+![Завершення сесії — FIN/ACK і RST](docs/wireshark-session.png)
 
 ---
 
