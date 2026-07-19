@@ -132,6 +132,71 @@ source IP (10.20.50.x) на публічну адресу, але destination IP
 
 ---
 
+# Опціональна частина
+
+## 7. nc -zv: відкритий / закритий / фільтрований порт
+
+```
+$ nc -zv github.com 443
+Connection to github.com port 443 [tcp/https] succeeded!
+
+$ nc -zv 127.0.0.1 65000
+nc: connectx to 127.0.0.1 port 65000 (tcp) failed: Connection refused
+
+$ time nc -zv -G 5 github.com 8080
+nc: connectx to github.com port 8080 (tcp) failed: Operation timed out
+(5.013 total)
+```
+
+**Порівняння:** три стани порту дають три різні реакції:
+
+| Порт | Результат | Час | Що сталося на рівні TCP |
+|---|---|---|---|
+| github.com:443 (відкритий) | succeeded | миттєво | SYN → SYN-ACK |
+| 127.0.0.1:65000 (закритий) | Connection refused | миттєво | SYN → RST |
+| github.com:8080 (фільтрований) | Operation timed out | 5 с (таймаут) | SYN → тиша |
+
+Закритий порт «чесний» — ОС одразу відповідає RST. Фільтрований —
+firewall у режимі DROP мовчки з'їдає SYN, і клієнт здається лише по
+таймауту. Саме за цією різницею nmap відрізняє `closed` від `filtered`.
+Повний вивід: [docs/nc-output.txt](docs/nc-output.txt).
+
+## 8. MTU і ping -s
+
+MTU en0 = 1500 (видно у `route -n get`). Розмір ICMP-пакета = payload +
+8 (ICMP) + 20 (IP), тож межа payload без фрагментації: 1500 − 28 = **1472**.
+Прапор `-D` ставить DF-біт (Don't Fragment):
+
+```
+$ ping -c 3 -D -s 1472 github.com     # 1472+28 = 1500 — рівно MTU
+1480 bytes from 140.82.121.4: ... time=46.133 ms   → 0% loss
+
+$ ping -c 3 -D -s 1473 github.com     # 1501 > MTU, DF заборонив різати
+ping: sendto: Message too long                     → 100% loss
+
+$ ping -c 3 -s 2000 github.com        # 2028 > MTU, але БЕЗ DF
+2008 bytes from 140.82.121.4: ... time=45.309 ms   → 0% loss
+```
+
+**Що це означає:** 1472 байти проходять рівно в MTU; +1 байт з DF-бітом —
+ядро навіть не відправляє пакет («Message too long»); той самий великий
+пакет без DF проходить, бо IP-рівень прозоро розрізає його на два фрагменти,
+а приймальна сторона склеює (RTT не змінився). На цьому механізмі
+побудовано Path MTU Discovery: TCP завжди ставить DF і зменшує сегмент,
+коли з маршруту прилітає ICMP "fragmentation needed". Повний вивід:
+[docs/mtu-ping-output.txt](docs/mtu-ping-output.txt).
+
+## 9. Wireshark
+
+Встановлення `brew install --cask wireshark` вимагає інтерактивного
+sudo-пароля (пакет інсталера), тому виконується вручну. Той самий handshake
+у GUI можна побачити так: запустити Wireshark → інтерфейс en0 → фільтр
+`tcp.flags.syn == 1 && ip.addr == 140.82.112.0/20` (або просто
+`tcp.port == 443`) → виконати `curl https://github.com` → перші три пакети
+списку і будуть SYN / SYN-ACK / ACK, ті самі, що в розділі 4.
+
+---
+
 ## Звіт (підсумок)
 
 | Пункт | Результат |

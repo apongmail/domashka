@@ -1,0 +1,35 @@
+Опціональна частина: MTU і ping -s (MTU en0 = 1500, з route -n get)
+
+Розмір ICMP-пакета = payload (-s) + 8 байт ICMP-заголовка + 20 байт
+IP-заголовка. Тобто максимальний payload без фрагментації при MTU 1500:
+1500 - 28 = 1472 байти. Прапор -D (macOS) ставить у пакеті біт DF
+(Don't Fragment) — забороняє фрагментацію.
+
+1) Рівно в MTU: 1472 + 28 = 1500 — проходить:
+
+$ ping -c 3 -D -s 1472 github.com
+1480 bytes from 140.82.121.4: icmp_seq=1 ttl=51 time=46.133 ms
+3 packets transmitted, 3 packets received, 0.0% packet loss
+
+2) На 1 байт більше з DF: 1473 + 28 = 1501 > 1500 — НЕ проходить:
+
+$ ping -c 3 -D -s 1473 github.com
+ping: sendto: Message too long
+3 packets transmitted, 0 packets received, 100.0% packet loss
+
+(ядро навіть не відправляє пакет: він більший за MTU інтерфейсу,
+а DF-біт забороняє розрізати його на фрагменти)
+
+3) Той самий великий пакет, але БЕЗ DF — проходить:
+
+$ ping -c 3 -s 2000 github.com
+2008 bytes from 140.82.121.4: icmp_seq=1 ttl=51 time=45.309 ms
+3 packets transmitted, 3 packets received, 0.0% packet loss
+
+(IP-рівень розрізав 2028-байтний пакет на два фрагменти <= 1500,
+приймальна сторона склеїла їх назад — RTT при цьому не змінився)
+
+Висновок: MTU 1500 — фактична межа кадра мого лінка; DF + перевищення MTU
+= відмова, без DF = прозора фрагментація. Так само працює Path MTU
+Discovery: TCP ставить DF і зменшує розмір сегмента, коли отримує ICMP
+"fragmentation needed".

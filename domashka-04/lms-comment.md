@@ -83,5 +83,34 @@ source MAC стає адресою самого маршрутизатора, а
 приватний source IP на публічний, але destination IP сервера не змінюється
 ніде.
 
+**Опціонально: nc -zv на три типи портів**
+
+```
+$ nc -zv github.com 443
+Connection to github.com port 443 [tcp/https] succeeded!
+$ nc -zv 127.0.0.1 65000
+nc: connectx ... failed: Connection refused
+$ time nc -zv -G 5 github.com 8080
+nc: connectx ... failed: Operation timed out   (5.013 total)
+```
+
+Коментар: відкритий порт відповідає миттєво (SYN → SYN-ACK), закритий —
+миттєво відмовляє (SYN → RST від ОС), а фільтрований мовчить і падає лише
+по таймауту 5 с (firewall у режимі DROP з'їв SYN). Саме за цим nmap
+відрізняє closed від filtered.
+
+**Опціонально: MTU і ping -s**
+
+```
+$ ping -c 3 -D -s 1472 github.com   → 0% loss   (1472+28 = рівно MTU 1500)
+$ ping -c 3 -D -s 1473 github.com   → ping: sendto: Message too long
+$ ping -c 3 -s 2000 github.com      → 0% loss   (без DF — фрагментація)
+```
+
+Коментар: межа payload = MTU 1500 − 28 байт заголовків = 1472. З DF-бітом
+(-D) пакет на 1 байт більший ядро навіть не відправляє; без DF той самий
+великий пакет прозоро ріжеться на фрагменти і проходить. На цьому працює
+Path MTU Discovery в TCP.
+
 **Файл із підсумком** (хопи, шлюз, MAC): у репозиторії
 https://github.com/apongmail/domashka → `domashka-04/docs/network-info.txt`

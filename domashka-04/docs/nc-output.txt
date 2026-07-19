@@ -1,0 +1,29 @@
+Опціональна частина: nc -zv на три типи портів
+
+1) Відкритий порт (github.com:443):
+
+$ nc -zv github.com 443
+Connection to github.com port 443 [tcp/https] succeeded!
+(exit code 0, відповідь миттєва — сервер відповів SYN-ACK)
+
+2) Закритий порт (127.0.0.1:65000 — ніхто не слухає):
+
+$ nc -zv 127.0.0.1 65000
+nc: connectx to 127.0.0.1 port 65000 (tcp) failed: Connection refused
+(exit code 1, відповідь миттєва — ОС відповіла пакетом RST)
+
+3) Фільтрований порт (github.com:8080 — firewall мовчки відкидає):
+
+$ time nc -zv -G 5 github.com 8080
+nc: connectx to github.com port 8080 (tcp) failed: Operation timed out
+nc -zv -G 5 github.com 8080  ... 5.013 total
+(exit code 1, але лише ПІСЛЯ таймауту 5 с — жодної відповіді не прийшло)
+
+Порівняння:
+  відкритий    → succeeded, миттєво (SYN → SYN-ACK)
+  закритий     → Connection refused, миттєво (SYN → RST)
+  фільтрований → Operation timed out, після таймауту (SYN → тиша)
+
+Саме за цією різницею сканери типу nmap відрізняють closed від filtered:
+закритий порт чесно відповідає RST, а firewall у режимі DROP просто
+мовчить, і клієнт здається лише по таймауту.
