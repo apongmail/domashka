@@ -1,0 +1,22 @@
+На macOS немає команди `ip route get` (вона з linux-пакета iproute2),
+нативний еквівалент — `route -n get`.
+
+$ route -n get github.com
+   route to: 140.82.121.4
+destination: default
+       mask: default
+    gateway: 10.20.50.1
+  interface: en0
+      flags: <UP,GATEWAY,DONE,STATIC,PRCLONING,GLOBAL>
+ recvpipe  sendpipe  ssthresh  rtt,msec    rttvar  hopcount      mtu     expire
+       0         0         0         0         0         0      1500         0
+
+$ netstat -rn | head -5
+Routing tables
+
+Internet:
+Destination        Gateway            Flags               Netif Expire
+default            10.20.50.1         UGScg                 en0
+
+$ arp -a | grep 10.20.50.1
+? (10.20.50.1) at b0:e4:d5:43:f3:c8 on en0 ifscope [ethernet]

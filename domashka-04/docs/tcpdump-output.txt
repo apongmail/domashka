@@ -1,0 +1,23 @@
+$ sudo tcpdump -i en0 -nn "tcp and net 140.82.112.0/20"
+(паралельно в іншому вікні: curl -s -o /dev/null https://github.com)
+
+Перші пакети з'єднання — TCP three-way handshake:
+
+19:32:46.921664 IP 10.20.50.89.52079 > 140.82.121.3.443: Flags [SEW], seq 1977315521, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 314885808 ecr 0,sackOK,eol], length 0
+19:32:46.967969 IP 140.82.121.3.443 > 10.20.50.89.52079: Flags [S.E], seq 67592, ack 1977315522, win 65535, options [mss 1436,sackOK,TS val 391803578 ecr 314885808,nop,wscale 10], length 0
+19:32:46.968157 IP 10.20.50.89.52079 > 140.82.121.3.443: Flags [.], ack 1, win 2070, options [nop,nop,TS val 314885854 ecr 391803578], length 0
+
+Розшифровка прапорів tcpdump:
+  [SEW] = SYN + ECE + CWR  — мій SYN (E і W — узгодження ECN, Explicit
+                             Congestion Notification; сам SYN — літера S)
+  [S.]  = SYN + ACK        — SYN-ACK від сервера (крапка = ACK);
+                             тут [S.E] — SYN-ACK + підтвердження ECN
+  [.]   = ACK              — фінальний ACK, з'єднання встановлене
+
+Далі в дампі:
+19:32:46.971702 ... Flags [P.], seq 1:321 ... length 320   — TLS ClientHello
+19:32:47.019111+ ... — TLS ServerHello/сертифікати і далі HTTP-обмін
+
+Повний дамп сесії — 644 рядки, тут наведено головне
+(handshake зайняв ~46 мс: SYN 19:32:46.921 → ACK 19:32:46.968,
+що збігається з RTT до GitHub з traceroute).

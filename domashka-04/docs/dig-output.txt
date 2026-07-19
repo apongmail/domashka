@@ -1,0 +1,20 @@
+$ dig github.com
+
+; <<>> DiG 9.10.6 <<>> github.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 6620
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4000
+;; QUESTION SECTION:
+;github.com.			IN	A
+
+;; ANSWER SECTION:
+github.com.		60	IN	A	140.82.121.4
+
+;; Query time: 50 msec
+;; SERVER: 192.168.50.2#53(192.168.50.2)
+;; WHEN: Sun Jul 19 18:41:57 EEST 2026
+;; MSG SIZE  rcvd: 55
