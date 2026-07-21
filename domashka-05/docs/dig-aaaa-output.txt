@@ -1,0 +1,48 @@
+# dig AAAA google.com і curl -6, порівняння з A-записом
+# Дата: 2026-07-21
+
+$ dig AAAA google.com +noall +answer +stats
+google.com.		43	IN	AAAA	2a00:1450:4001:c0f::8a
+google.com.		43	IN	AAAA	2a00:1450:4001:c0f::64
+google.com.		43	IN	AAAA	2a00:1450:4001:c0f::65
+google.com.		43	IN	AAAA	2a00:1450:4001:c0f::66
+;; Query time: 48 msec
+;; SERVER: 192.168.50.2#53(192.168.50.2)
+
+$ dig A google.com +noall +answer +stats
+google.com.		300	IN	A	142.251.110.113
+google.com.		300	IN	A	142.251.110.100
+google.com.		300	IN	A	142.251.110.139
+google.com.		300	IN	A	142.251.110.138
+google.com.		300	IN	A	142.251.110.102
+google.com.		300	IN	A	142.251.110.101
+;; Query time: 52 msec
+;; SERVER: 192.168.50.2#53(192.168.50.2)
+
+# Порівняння:
+#   A    — 6 адрес по 32 біти (142.251.110.x), один вузол = одна адреса
+#   AAAA — 4 адреси по 128 біт (2a00:1450:4001:c0f::...), усі в одній
+#          /64-мережі дата-центру Google; "::" стискає нульові групи
+#   Обидва типи запитів обробив той самий локальний DNS 192.168.50.2 —
+#   ЗАПИТ AAAA іде по IPv4-транспорту, IPv6-зв'язність для цього не потрібна.
+
+$ curl -6 -v https://google.com
+* Host google.com:443 was resolved.
+* IPv6: ::ffff:142.251.110.100, ::ffff:142.251.110.139, ...
+* IPv4: (none)
+* Connected to google.com (::ffff:142.251.110.100) port 443
+< HTTP/2 301
+# curl -6 "начебто" спрацював, але адреси ::ffff:142.251.110.100 — це
+# IPv4-mapped IPv6: система знає, що IPv6-маршруту нема, тому замість
+# реальних AAAA підставила A-записи в IPv6-форматі. Трафік іде по IPv4.
+
+$ curl -4 -s -o /dev/null -w "HTTP %{http_code}, remote %{remote_ip}, %{time_total}s\n" https://google.com
+HTTP 301, remote 142.251.110.139, 0.138722s
+
+# Чесна перевірка — з'єднання з реальною AAAA-адресою:
+$ curl -g "https://[2a00:1450:4001:c0f::64]/"
+* Immediate connect fail for 2a00:1450:4001:c0f::64: No route to host
+
+# ВИСНОВОК: DNS-рівень IPv6 працює (AAAA-записи отримуються без проблем),
+# а транспортний — ні (без глобальної IPv6-адреси і маршруту з'єднатися
+# з 2a00:... неможливо). DNS і зв'язність — незалежні речі.

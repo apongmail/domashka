@@ -1,0 +1,51 @@
+# Перевірка IPv6 (macOS-еквівалент `ip -6 addr` — ifconfig | grep inet6)
+# Дата: 2026-07-21
+
+$ ifconfig | grep inet6
+	inet6 ::1 prefixlen 128
+	inet6 fe80::1%lo0 prefixlen 64 scopeid 0x1
+	inet6 fe80::156e:dd03:c76a:7b4f%utun0 prefixlen 64 scopeid 0x12
+	inet6 fe80::1445:ef77:ba10:85da%en0 prefixlen 64 secured scopeid 0xe
+	inet6 fd5e:875a:a143:4f74:10a9:6486:9fcd:9da4 prefixlen 64 autoconf secured
+	inet6 fe80::3c04:e8ff:fe0d:ff64%awdl0 prefixlen 64 scopeid 0x10
+	inet6 fe80::8278:f519:3e01:c11d%utun1 prefixlen 64 scopeid 0x13
+	inet6 fe80::3c04:e8ff:fe0d:ff64%llw0 prefixlen 64 scopeid 0x11
+	inet6 fe80::3f4b:c103:cd68:8651%utun2 prefixlen 64 scopeid 0x14
+	inet6 fe80::ce81:b1c:bd2c:69e%utun3 prefixlen 64 scopeid 0x15
+	inet6 fe80::7e9f:ee5a:63b3:155d%utun4 prefixlen 64 scopeid 0x16
+	inet6 fe80::3abf:97b2:b657:e03d%utun5 prefixlen 64 scopeid 0x17
+
+# Типи адрес, які видно:
+#   ::1                — loopback
+#   fe80::/10          — link-local (автоматичні, є на кожному інтерфейсі,
+#                        в інтернет не маршрутизуються)
+#   fd5e:875a::/64     — ULA, Unique Local Address (fd00::/8) — приватна
+#                        IPv6-адреса від роутера, аналог RFC 1918
+#   ГЛОБАЛЬНОЇ адреси (2000::/3) НЕМАЄ
+
+# Практична перевірка 1: пряме з'єднання з IPv6-адресою Google
+$ curl -g "https://[2a00:1450:4001:c0f::64]/"
+*   Trying [2a00:1450:4001:c0f::64]:443...
+* Immediate connect fail for 2a00:1450:4001:c0f::64: No route to host
+
+# Практична перевірка 2: curl -6 https://google.com
+$ curl -6 -v https://google.com
+* Host google.com:443 was resolved.
+* IPv6: ::ffff:142.251.110.100, ::ffff:142.251.110.139, ...
+* IPv4: (none)
+* Connected to google.com (::ffff:142.251.110.100) port 443
+# ::ffff:x.x.x.x — це IPv4-mapped адреси: резолвер бачить, що IPv6-маршруту
+# нема, і підсовує IPv4-адреси у форматі IPv6. Фактично трафік іде по IPv4.
+
+# Практична перевірка 3: дзеркала test-ipv6.com
+$ curl "https://ipv4.test-ipv6.com/ip/?asn=1"
+callback({"ip":"91.226.253.120","type":"ipv4","asn":"16044",
+          "asn_name":"IPORT - IPORT UNITED LLC, UA"})
+
+$ curl "https://ipv6.test-ipv6.com/ip/"
+* Could not resolve host: ipv6.test-ipv6.com
+# (у хоста лише AAAA-запис; без IPv6-маршруту система його навіть не віддає)
+
+# ВИСНОВОК: IPv6-інтернету немає. Є тільки link-local (fe80::) та приватна
+# ULA (fd5e::) від роутера — провайдер (IPORT, AS16044) IPv6 не видає.
+# Увесь зовнішній трафік іде по IPv4; test-ipv6.com дав би 0/10.

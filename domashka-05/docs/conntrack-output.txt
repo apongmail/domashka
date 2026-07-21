@@ -1,0 +1,42 @@
+# conntrack -L під час завантаження сайту
+# Дата: 2026-07-21
+#
+# macOS не має conntrack (це утиліта netfilter з Linux), тому демонстрація
+# зроблена в Docker Desktop (Linux-ядро 6.12.76-linuxkit).
+#
+# Схема: контейнер `dz5-curler` (IP 172.17.0.2, bridge-мережа) у циклі
+# завантажує http://example.com; паралельно з host-netns Linux-VM
+# (--net=host --privileged) дивимось таблицю трансляцій.
+
+$ docker run -d --rm --name dz5-curler alpine \
+    sh -c 'while true; do wget -qO /dev/null http://example.com; sleep 2; done'
+
+$ docker inspect -f '...IPAddress...' dz5-curler
+172.17.0.2
+
+$ docker run --rm --net=host --privileged alpine sh -c \
+    'apk add -q conntrack-tools; conntrack -L | grep "dport=80 " | grep 172.17.0.2'
+
+tcp  6 119 TIME_WAIT src=172.17.0.2 dst=172.66.147.243 sport=58756 dport=80 \
+     src=172.66.147.243 dst=192.168.65.3 sport=80 dport=58756 [ASSURED] mark=0 use=1
+tcp  6 111 TIME_WAIT src=172.17.0.2 dst=172.66.147.243 sport=50620 dport=80 \
+     src=172.66.147.243 dst=192.168.65.3 sport=80 dport=50620 [ASSURED] mark=0 use=1
+tcp  6 117 TIME_WAIT src=172.17.0.2 dst=172.66.147.243 sport=58742 dport=80 \
+     src=172.66.147.243 dst=192.168.65.3 sport=80 dport=58742 [ASSURED] mark=0 use=1
+
+$ conntrack -L | wc -l
+1480    # всього записів у таблиці станів
+
+# Розбір одного запису (це і є "мій запис трансляції"):
+#   перша половина — оригінальний напрямок:
+#     src=172.17.0.2 (контейнер) dst=172.66.147.243 (example.com) dport=80
+#   друга половина — ОЧІКУВАНА відповідь:
+#     src=172.66.147.243 dst=192.168.65.3 — сервер відповідає НЕ контейнеру,
+#     а на 192.168.65.3 (адресу VM після MASQUERADE/SNAT)
+#   Різниця між dst оригіналу і dst відповіді — доказ NAT-трансляції:
+#   conntrack пам'ятає відповідність і переписує адреси назад.
+#
+#   TIME_WAIT  — стан TCP після закриття з'єднання (wget закінчив запит)
+#   [ASSURED]  — обмін пройшов в обидва боки, запис не буде викинуто
+#                при переповненні таблиці
+#   6          — номер протоколу (TCP), 119/111/117 — TTL запису в секундах
