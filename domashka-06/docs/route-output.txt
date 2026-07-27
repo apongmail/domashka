@@ -2,7 +2,7 @@ $ route -n get ithillel.ua
    route to: 78.47.64.83
 destination: default
        mask: default
-    gateway: 10.20.50.1
+    gateway: 192.168.8.1
   interface: en0
       flags: <UP,GATEWAY,DONE,STATIC,PRCLONING,GLOBAL>
  recvpipe  sendpipe  ssthresh  rtt,msec    rttvar  hopcount      mtu     expire

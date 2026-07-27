@@ -47,12 +47,12 @@
 * Request completely sent off
 < HTTP/2 200 
 < server: nginx
-< date: Sat, 25 Jul 2026 08:27:45 GMT
+< date: Mon, 27 Jul 2026 19:14:47 GMT
 < content-type: text/html; charset=utf-8
-< content-length: 651659
-< last-modified: Sat, 25 Jul 2026 03:10:07 GMT
+< content-length: 653492
+< last-modified: Mon, 27 Jul 2026 14:24:24 GMT
 < vary: Accept-Encoding
-< etag: "6a64290f-9f18b"
+< etag: "6a676a18-9f8b4"
 < strict-transport-security: max-age=31536000; includeSubDomains; preload
 < x-xss-protection: 1; mode=block
 < x-content-type-options: nosniff
@@ -60,5 +60,5 @@
 < accept-ranges: bytes
 < 
 { [4087 bytes data]
-100  636k  100  636k    0     0   892k      0 --:--:-- --:--:-- --:--:--  893k
+ 74  638k   74  475k    0     0  1413k      0 --:--:-- --:--:-- --:--:-- 1412k100  638k  100  638k    0     0  1837k      0 --:--:-- --:--:-- --:--:-- 1833k
 * Connection #0 to host ithillel.ua left intact

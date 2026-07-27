@@ -1,21 +1,21 @@
 --- запуск 1 ---
-time_namelookup(DNS):    0.062749s
-time_connect(TCP):       0.104175s
-time_appconnect(TLS):    0.149356s
-time_starttransfer(TTFB):0.189521s
-time_total:              0.402294s
-http:2 code:200 size:651659
+time_namelookup(DNS):    0.006136s
+time_connect(TCP):       0.046930s
+time_appconnect(TLS):    0.092588s
+time_starttransfer(TTFB):0.132753s
+time_total:              0.349716s
+http:2 code:200 size:653492
 --- запуск 2 ---
-time_namelookup(DNS):    0.006492s
-time_connect(TCP):       0.044420s
-time_appconnect(TLS):    0.087742s
-time_starttransfer(TTFB):0.131272s
-time_total:              0.341717s
-http:2 code:200 size:651659
+time_namelookup(DNS):    0.002962s
+time_connect(TCP):       0.042887s
+time_appconnect(TLS):    0.088711s
+time_starttransfer(TTFB):0.134394s
+time_total:              0.340528s
+http:2 code:200 size:653492
 --- запуск 3 ---
-time_namelookup(DNS):    0.008271s
-time_connect(TCP):       0.048054s
-time_appconnect(TLS):    0.093336s
-time_starttransfer(TTFB):0.134781s
-time_total:              0.343647s
-http:2 code:200 size:651659
+time_namelookup(DNS):    0.002957s
+time_connect(TCP):       0.042203s
+time_appconnect(TLS):    0.087217s
+time_starttransfer(TTFB):0.129345s
+time_total:              0.346684s
+http:2 code:200 size:653492

@@ -1,48 +1,50 @@
 === TLS-сесія у tshark (out-of-order reassembly увімкнено) ===
-    1   0.000000  10.20.50.89 → 78.47.64.83  TCP 78 51631 → 443 [SYN, ECE, CWR] Seq=0 Win=65535 Len=0 MSS=1460 WS=64 TSval=943710973 TSecr=0 SACK_PERM
-    2   0.039102  78.47.64.83 → 10.20.50.89  TCP 74 443 → 51631 [SYN, ACK, ECE] Seq=0 Ack=1 Win=65160 Len=0 MSS=1460 SACK_PERM TSval=2788008368 TSecr=943710973 WS=128
-    3   0.039298  10.20.50.89 → 78.47.64.83  TCP 66 51631 → 443 [ACK] Seq=1 Ack=1 Win=131776 Len=0 TSval=943711013 TSecr=2788008368
-    4   0.039558  10.20.50.89 → 78.47.64.83  TLSv1 387 Client Hello (SNI=ithillel.ua)
-    5   0.080167  78.47.64.83 → 10.20.50.89  TCP 66 443 → 51631 [ACK] Seq=1 Ack=322 Win=64896 Len=0 TSval=2788008408 TSecr=943711013
-    6   0.080170  78.47.64.83 → 10.20.50.89  TCP 1514 [TCP Previous segment not captured] 443 → 51631 [PSH, ACK] Seq=1449 Ack=322 Win=64896 Len=1448 TSval=2788008408 TSecr=943711013
-    7   0.080172  78.47.64.83 → 10.20.50.89  TCP 1266 443 → 51631 [PSH, ACK] Seq=2897 Ack=322 Win=64896 Len=1200 TSval=2788008408 TSecr=943711013
-    8   0.080174  78.47.64.83 → 10.20.50.89  TLSv1.3 1514 [TCP Retransmission] , Server Hello, Change Cipher Spec, Application Data
-    9   0.080372  10.20.50.89 → 78.47.64.83  TCP 78 [TCP Dup ACK 3#1] 51631 → 443 [ACK] Seq=322 Ack=1 Win=131776 Len=0 TSval=943711054 TSecr=2788008408 SLE=1449 SRE=4097
-   10   0.080414  10.20.50.89 → 78.47.64.83  TCP 66 51631 → 443 [ACK] Seq=322 Ack=4097 Win=127680 Len=0 TSval=943711054 TSecr=2788008408
-   11   0.080914  10.20.50.89 → 78.47.64.83  TCP 66 [TCP Window Update] 51631 → 443 [ACK] Seq=322 Ack=4097 Win=131072 Len=0 TSval=943711054 TSecr=2788008408
-   12   0.081225  78.47.64.83 → 10.20.50.89  TLSv1.3 607 Application Data, Application Data, Application Data
-   13   0.081289  10.20.50.89 → 78.47.64.83  TCP 66 51631 → 443 [ACK] Seq=322 Ack=4638 Win=130560 Len=0 TSval=943711055 TSecr=2788008410
-   14   0.082544  10.20.50.89 → 78.47.64.83  TLSv1.3 72 Change Cipher Spec
-   15   0.082571  10.20.50.89 → 78.47.64.83  TLSv1.3 140 Application Data
-   16   0.082795  10.20.50.89 → 78.47.64.83  TLSv1.3 152 Application Data
-   17   0.082947  10.20.50.89 → 78.47.64.83  TLSv1.3 125 Application Data
-   18   0.121881  78.47.64.83 → 10.20.50.89  TCP 66 443 → 51631 [ACK] Seq=4638 Ack=402 Win=64896 Len=0 TSval=2788008450 TSecr=943711056
-   19   0.121884  78.47.64.83 → 10.20.50.89  TLSv1.3 353 Application Data
-   20   0.121886  78.47.64.83 → 10.20.50.89  TLSv1.3 353 Application Data
-   21   0.121887  78.47.64.83 → 10.20.50.89  TLSv1.3 128 Application Data
-   22   0.122365  10.20.50.89 → 78.47.64.83  TCP 66 51631 → 443 [ACK] Seq=547 Ack=5274 Win=130496 Len=0 TSval=943711096 TSecr=2788008450
-   23   0.123223  10.20.50.89 → 78.47.64.83  TLSv1.3 97 Application Data
-   24   0.124112  78.47.64.83 → 10.20.50.89  TCP 66 443 → 51631 [ACK] Seq=5274 Ack=547 Win=64768 Len=0 TSval=2788008454 TSecr=943711056
-   25   0.125781  78.47.64.83 → 10.20.50.89  TLSv1.3 371 Application Data
-   26   0.125784  78.47.64.83 → 10.20.50.89  TLSv1.3 1514 
-   27   0.125786  78.47.64.83 → 10.20.50.89  TCP 1514 443 → 51631 [PSH, ACK] Seq=7027 Ack=547 Win=64768 Len=1448 TSval=2788008454 TSecr=943711056
-   28   0.125788  78.47.64.83 → 10.20.50.89  TLSv1.3 1288 Application Data
-   29   0.125790  78.47.64.83 → 10.20.50.89  TLSv1.3 1514 
-   30   0.126131  78.47.64.83 → 10.20.50.89  TCP 1514 443 → 51631 [PSH, ACK] Seq=11145 Ack=547 Win=64768 Len=1448 TSval=2788008454 TSecr=943711056
+    1   0.000000 192.168.8.230 → 78.47.64.83  TCP 78 59643 → 443 [SYN, ECE, CWR] Seq=0 Win=65535 Len=0 MSS=1460 WS=64 TSval=2437134331 TSecr=0 SACK_PERM
+    2   0.041525  78.47.64.83 → 192.168.8.230 TCP 74 443 → 59643 [SYN, ACK, ECE] Seq=0 Ack=1 Win=65160 Len=0 MSS=1400 SACK_PERM TSval=2999630400 TSecr=2437134331 WS=128
+    3   0.041719 192.168.8.230 → 78.47.64.83  TCP 66 59643 → 443 [ACK] Seq=1 Ack=1 Win=131904 Len=0 TSval=2437134373 TSecr=2999630400
+    4   0.041935 192.168.8.230 → 78.47.64.83  TLSv1 387 Client Hello (SNI=ithillel.ua)
+    5   0.084265  78.47.64.83 → 192.168.8.230 TCP 66 443 → 59643 [ACK] Seq=1 Ack=322 Win=64896 Len=0 TSval=2999630441 TSecr=2437134373
+    6   0.084267  78.47.64.83 → 192.168.8.230 TCP 1454 [TCP Previous segment not captured] 443 → 59643 [PSH, ACK] Seq=1389 Ack=322 Win=64896 Len=1388 TSval=2999630442 TSecr=2437134373
+    7   0.084268  78.47.64.83 → 192.168.8.230 TCP 1386 443 → 59643 [PSH, ACK] Seq=2777 Ack=322 Win=64896 Len=1320 TSval=2999630442 TSecr=2437134373
+    8   0.084270  78.47.64.83 → 192.168.8.230 TLSv1.3 1454 [TCP Retransmission] , Server Hello, Change Cipher Spec, Application Data
+    9   0.084418 192.168.8.230 → 78.47.64.83  TCP 78 [TCP Dup ACK 3#1] 59643 → 443 [ACK] Seq=322 Ack=1 Win=131904 Len=0 TSval=2437134415 TSecr=2999630441 SLE=1389 SRE=4097
+   10   0.084451 192.168.8.230 → 78.47.64.83  TCP 66 59643 → 443 [ACK] Seq=322 Ack=4097 Win=127808 Len=0 TSval=2437134415 TSecr=2999630442
+   11   0.085203  78.47.64.83 → 192.168.8.230 TLSv1.3 607 Application Data, Application Data, Application Data
+   12   0.085262 192.168.8.230 → 78.47.64.83  TCP 66 59643 → 443 [ACK] Seq=322 Ack=4638 Win=127296 Len=0 TSval=2437134416 TSecr=2999630444
+   13   0.086321 192.168.8.230 → 78.47.64.83  TCP 66 [TCP Window Update] 59643 → 443 [ACK] Seq=322 Ack=4638 Win=131072 Len=0 TSval=2437134417 TSecr=2999630444
+   14   0.086421 192.168.8.230 → 78.47.64.83  TLSv1.3 72 Change Cipher Spec
+   15   0.086437 192.168.8.230 → 78.47.64.83  TLSv1.3 140 Application Data
+   16   0.086613 192.168.8.230 → 78.47.64.83  TLSv1.3 152 Application Data
+   17   0.086707 192.168.8.230 → 78.47.64.83  TLSv1.3 125 Application Data
+   18   0.127547  78.47.64.83 → 192.168.8.230 TCP 66 443 → 59643 [ACK] Seq=4638 Ack=547 Win=64768 Len=0 TSval=2999630485 TSecr=2437134417
+   19   0.127549  78.47.64.83 → 192.168.8.230 TLSv1.3 353 Application Data
+   20   0.127551  78.47.64.83 → 192.168.8.230 TLSv1.3 353 Application Data
+   21   0.127554  78.47.64.83 → 192.168.8.230 TLSv1.3 411 Application Data
+   22   0.127556  78.47.64.83 → 192.168.8.230 TLSv1.3 1454 
+   23   0.127557  78.47.64.83 → 192.168.8.230 TCP 1454 443 → 59643 [PSH, ACK] Seq=6945 Ack=547 Win=64768 Len=1388 TSval=2999630486 TSecr=2437134417
+   24   0.127559  78.47.64.83 → 192.168.8.230 TLSv1.3 1408 Application Data
+   25   0.127561  78.47.64.83 → 192.168.8.230 TLSv1.3 1454 
+   26   0.127562  78.47.64.83 → 192.168.8.230 TCP 1454 443 → 59643 [PSH, ACK] Seq=11063 Ack=547 Win=64768 Len=1388 TSval=2999630486 TSecr=2437134417
+   27   0.127563  78.47.64.83 → 192.168.8.230 TLSv1.3 1454 Application Data
+   28   0.127565  78.47.64.83 → 192.168.8.230 TCP 1454 443 → 59643 [PSH, ACK] Seq=13839 Ack=547 Win=64768 Len=1388 TSval=2999630486 TSecr=2437134417
+   29   0.127757 192.168.8.230 → 78.47.64.83  TCP 66 59643 → 443 [ACK] Seq=547 Ack=15227 Win=120512 Len=0 TSval=2437134459 TSecr=2999630486
+   30   0.128270 192.168.8.230 → 78.47.64.83  TCP 66 [TCP Window Update] 59643 → 443 [ACK] Seq=547 Ack=15227 Win=131072 Len=0 TSval=2437134459 TSecr=2999630486
 
 === ClientHello: деталі SNI (frame 4) ===
+            Extension: server_name (len=16) name=ithillel.ua
                 Type: server_name (0)
                 Length: 16
                 Server Name Indication extension
                     Server Name list length: 14
                     Server Name Type: host_name (0)
                     Server Name length: 11
-                    Server Name: ithillel.ua
-            Extension: ec_point_formats (len=2)
-                Type: ec_point_formats (11)
-                Length: 2
 
 === ServerHello (frame 8) — версія і шифр ===
+Internet Protocol Version 4, Src: 78.47.64.83, Dst: 192.168.8.230
+    0100 .... = Version: 4
+        Version: TLS 1.2 (0x0303)
             Handshake Type: Server Hello (2)
+            Version: TLS 1.2 (0x0303)
+                [Expert Info (Chat/Deprecated): This legacy_version field MUST be ignored. The supported_versions extension is present and MUST be used instead.]
+                    [This legacy_version field MUST be ignored. The supported_versions extension is present and MUST be used instead.]
             Cipher Suite: TLS_AES_256_GCM_SHA384 (0x1302)
-                Supported Version: TLS 1.3 (0x0304)
