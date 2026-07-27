@@ -33,8 +33,8 @@ $ curl -6 -v https://google.com
 * Connected to google.com (::ffff:142.251.110.100) port 443
 < HTTP/2 301
 # curl -6 "начебто" спрацював, але адреси ::ffff:142.251.110.100 — це
-# IPv4-mapped IPv6: система знає, що IPv6-маршруту нема, тому замість
-# реальних AAAA підставила A-записи в IPv6-форматі. Трафік іде по IPv4.
+# IPv4-mapped IPv6. Фактично трафік іде по IPv4, тому цей результат не
+# доводить наявності IPv6-зв'язності.
 
 $ curl -4 -s -o /dev/null -w "HTTP %{http_code}, remote %{remote_ip}, %{time_total}s\n" https://google.com
 HTTP 301, remote 142.251.110.139, 0.138722s

@@ -1,0 +1,88 @@
+$ dig A ithillel.ua
+
+; <<>> DiG 9.10.6 <<>> A ithillel.ua
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18190
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;ithillel.ua.			IN	A
+
+;; ANSWER SECTION:
+ithillel.ua.		228	IN	A	78.47.64.83
+
+;; Query time: 18 msec
+;; SERVER: 10.255.255.1#53(10.255.255.1)
+;; WHEN: Sat Jul 25 11:23:53 EEST 2026
+;; MSG SIZE  rcvd: 56
+
+
+$ dig AAAA ithillel.ua
+
+; <<>> DiG 9.10.6 <<>> AAAA ithillel.ua
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20223
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;ithillel.ua.			IN	AAAA
+
+;; ANSWER SECTION:
+ithillel.ua.		238	IN	AAAA	2a01:4f8:c012:dc97::1
+
+;; Query time: 5 msec
+;; SERVER: 10.255.255.1#53(10.255.255.1)
+;; WHEN: Sat Jul 25 11:23:53 EEST 2026
+;; MSG SIZE  rcvd: 68
+
+
+$ dig NS ithillel.ua
+
+; <<>> DiG 9.10.6 <<>> NS ithillel.ua
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26087
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;ithillel.ua.			IN	NS
+
+;; ANSWER SECTION:
+ithillel.ua.		86338	IN	NS	coco.ns.cloudflare.com.
+ithillel.ua.		86338	IN	NS	norm.ns.cloudflare.com.
+
+;; Query time: 9 msec
+;; SERVER: 10.255.255.1#53(10.255.255.1)
+;; WHEN: Sat Jul 25 11:23:53 EEST 2026
+;; MSG SIZE  rcvd: 95
+
+
+$ dig SOA ithillel.ua
+
+; <<>> DiG 9.10.6 <<>> SOA ithillel.ua
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59760
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;ithillel.ua.			IN	SOA
+
+;; ANSWER SECTION:
+ithillel.ua.		1738	IN	SOA	coco.ns.cloudflare.com. dns.cloudflare.com. 2408945412 10000 2400 604800 1800
+
+;; Query time: 6 msec
+;; SERVER: 10.255.255.1#53(10.255.255.1)
+;; WHEN: Sat Jul 25 11:23:53 EEST 2026
+;; MSG SIZE  rcvd: 102
+

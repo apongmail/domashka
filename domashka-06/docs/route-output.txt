@@ -1,0 +1,12 @@
+$ route -n get ithillel.ua
+   route to: 78.47.64.83
+destination: default
+       mask: default
+    gateway: 10.20.50.1
+  interface: en0
+      flags: <UP,GATEWAY,DONE,STATIC,PRCLONING,GLOBAL>
+ recvpipe  sendpipe  ssthresh  rtt,msec    rttvar  hopcount      mtu     expire
+       0         0         0         0         0         0      1500         0 
+
+$ route -n get -inet6 2a01:4f8:c012:dc97::1
+route: writing to routing socket: not in table

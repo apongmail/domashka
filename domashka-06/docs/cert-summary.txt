@@ -1,0 +1,6 @@
+subject=CN=ithillel.ua
+issuer=C=US, O=Let's Encrypt, CN=YR2
+notBefore=Jul  7 20:29:50 2026 GMT
+notAfter=Oct  5 20:29:49 2026 GMT
+X509v3 Subject Alternative Name: 
+    DNS:*.ithillel.ua, DNS:ithillel.ua

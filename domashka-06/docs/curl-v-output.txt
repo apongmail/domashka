@@ -1,0 +1,64 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Host ithillel.ua:443 was resolved.
+* IPv6: (none)
+* IPv4: 78.47.64.83
+*   Trying 78.47.64.83:443...
+* Connected to ithillel.ua (78.47.64.83) port 443
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [316 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [4081 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+* SSL connection using TLSv1.3 / AEAD-AES256-GCM-SHA384 / [blank] / UNDEF
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=ithillel.ua
+*  start date: Jul  7 20:29:50 2026 GMT
+*  expire date: Oct  5 20:29:49 2026 GMT
+*  subjectAltName: host "ithillel.ua" matched cert's "ithillel.ua"
+*  issuer: C=US; O=Let's Encrypt; CN=YR2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://ithillel.ua/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: ithillel.ua]
+* [HTTP/2] [1] [:path: /]
+* [HTTP/2] [1] [user-agent: curl/8.7.1]
+* [HTTP/2] [1] [accept: */*]
+> GET / HTTP/2
+> Host: ithillel.ua
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< server: nginx
+< date: Sat, 25 Jul 2026 08:27:45 GMT
+< content-type: text/html; charset=utf-8
+< content-length: 651659
+< last-modified: Sat, 25 Jul 2026 03:10:07 GMT
+< vary: Accept-Encoding
+< etag: "6a64290f-9f18b"
+< strict-transport-security: max-age=31536000; includeSubDomains; preload
+< x-xss-protection: 1; mode=block
+< x-content-type-options: nosniff
+< referrer-policy: no-referrer-when-downgrade
+< accept-ranges: bytes
+< 
+{ [4087 bytes data]
+100  636k  100  636k    0     0   892k      0 --:--:-- --:--:-- --:--:--  893k
+* Connection #0 to host ithillel.ua left intact
