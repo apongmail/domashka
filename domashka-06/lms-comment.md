@@ -40,8 +40,10 @@ Hetzner і всі таймінги збіглись, але в traceroute дод
 - **Що поліпшити:** прибрати чотири CBC-набори TLS 1.2, позначені weak.
 - **Mozilla Intermediate:** сайт близький до профілю, але відрізняються
   TLS 1.2 cipher list і HSTS `max-age` (1 рік проти рекомендованих 2).
-- **Власний сервіс:** сучасні ciphers, HSTS, моніторинг строку сертифіката,
-  коректний ICMP для PMTUD та WireGuard-доступ без прямого port forwarding.
+- **Власний сервіс:** публічного сервісу не маю, тому частина висновків
+  «на виріст» (сучасні ciphers, HSTS, моніторинг строку сертифіката), а
+  для реальної домашньої мережі — коректний ICMP для PMTUD та
+  WireGuard-доступ без прямого port forwarding.
 
 **Повний звіт зі скріншотами:**
 https://github.com/apongmail/domashka/blob/main/domashka-06/report_domashka-06.md
