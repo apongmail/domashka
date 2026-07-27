@@ -1,0 +1,9 @@
+=== Опублікований порт бази видно з хоста ===
+$ nc -vz localhost 5432
+Connection to localhost port 5432 [tcp/postgresql] succeeded!
+
+$ psql з хоста (через docker run):
+                                            version                                             
+------------------------------------------------------------------------------------------------
+ PostgreSQL 17.10 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+(1 row)

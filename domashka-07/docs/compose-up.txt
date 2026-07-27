@@ -1,0 +1,183 @@
+ Image postgres:17-alpine Pulling 
+ 5de55e5ef9c0 Already exists 0B
+ b7781fb3189d Pulling fs layer 0B
+ 4f73ae36cba7 Pulling fs layer 0B
+ 64ff51359858 Pulling fs layer 0B
+ 1a46b6232269 Pulling fs layer 0B
+ f6a6b8d5cd43 Pulling fs layer 0B
+ 1bf010fe2356 Pulling fs layer 0B
+ a0af9521f8f8 Pulling fs layer 0B
+ 421e938fbd20 Pulling fs layer 0B
+ 1a46b6232269 Waiting 0B
+ db79c5eec36c Pulling fs layer 0B
+ f6a6b8d5cd43 Waiting 0B
+ 1bf010fe2356 Waiting 0B
+ a0af9521f8f8 Waiting 0B
+ 421e938fbd20 Waiting 0B
+ db79c5eec36c Waiting 0B
+ 4f73ae36cba7 Downloading 15.78kB
+ 4f73ae36cba7 Downloading 540.1kB
+ 4f73ae36cba7 Verifying Checksum 0B
+ 4f73ae36cba7 Download complete 0B
+ 64ff51359858 Downloading 116B
+ 64ff51359858 Download complete 0B
+ b7781fb3189d Downloading 969B
+ b7781fb3189d Verifying Checksum 0B
+ b7781fb3189d Download complete 0B
+ b7781fb3189d Extracting 969B
+ b7781fb3189d Extracting 969B
+ b7781fb3189d Pull complete 0B
+ 4f73ae36cba7 Extracting 32.77kB
+ 4f73ae36cba7 Extracting 852.3kB
+ 4f73ae36cba7 Pull complete 0B
+ 64ff51359858 Extracting 116B
+ 64ff51359858 Extracting 116B
+ 64ff51359858 Pull complete 0B
+ 1a46b6232269 Downloading 531.8kB
+ f6a6b8d5cd43 Downloading 3.496kB
+ f6a6b8d5cd43 Download complete 0B
+ 1a46b6232269 Downloading 3.209MB
+ 1bf010fe2356 Downloading 128B
+ 1bf010fe2356 Verifying Checksum 0B
+ 1bf010fe2356 Download complete 0B
+ a0af9521f8f8 Downloading 168B
+ a0af9521f8f8 Download complete 0B
+ 1a46b6232269 Downloading 6.438MB
+ 421e938fbd20 Downloading 3.496kB
+ 421e938fbd20 Downloading 6.11kB
+ 421e938fbd20 Verifying Checksum 0B
+ 421e938fbd20 Download complete 0B
+ 1a46b6232269 Downloading 9.632MB
+ db79c5eec36c Downloading 184B
+ db79c5eec36c Verifying Checksum 0B
+ db79c5eec36c Download complete 0B
+ 1a46b6232269 Downloading 12.82MB
+ 1a46b6232269 Downloading 16.01MB
+ 1a46b6232269 Downloading 19.23MB
+ 1a46b6232269 Downloading 22.44MB
+ 1a46b6232269 Downloading 25.64MB
+ 1a46b6232269 Downloading 27.79MB
+ 1a46b6232269 Downloading 32.59MB
+ 1a46b6232269 Downloading 35.25MB
+ 1a46b6232269 Downloading 37.93MB
+ 1a46b6232269 Downloading 40.07MB
+ 1a46b6232269 Downloading 42.21MB
+ 1a46b6232269 Downloading 45.42MB
+ 1a46b6232269 Downloading 48.1MB
+ 1a46b6232269 Downloading 50.23MB
+ 1a46b6232269 Downloading 52.9MB
+ 1a46b6232269 Downloading 56.12MB
+ 1a46b6232269 Downloading 58.79MB
+ 1a46b6232269 Downloading 61.48MB
+ 1a46b6232269 Downloading 64.15MB
+ 1a46b6232269 Downloading 66.83MB
+ 1a46b6232269 Downloading 70.56MB
+ 1a46b6232269 Downloading 73.23MB
+ 1a46b6232269 Downloading 76.44MB
+ 1a46b6232269 Downloading 79.13MB
+ 1a46b6232269 Downloading 81.81MB
+ 1a46b6232269 Downloading 83.94MB
+ 1a46b6232269 Downloading 87.15MB
+ 1a46b6232269 Downloading 90.34MB
+ 1a46b6232269 Downloading 93.55MB
+ 1a46b6232269 Downloading 96.74MB
+ 1a46b6232269 Downloading 99.92MB
+ 1a46b6232269 Downloading 103.1MB
+ 1a46b6232269 Downloading 106.3MB
+ 1a46b6232269 Downloading 109.6MB
+ 1a46b6232269 Verifying Checksum 0B
+ 1a46b6232269 Download complete 0B
+ 1a46b6232269 Extracting 557.1kB
+ 1a46b6232269 Extracting 2.228MB
+ 1a46b6232269 Extracting 6.128MB
+ 1a46b6232269 Extracting 13.93MB
+ 1a46b6232269 Extracting 25.07MB
+ 1a46b6232269 Extracting 35.65MB
+ 1a46b6232269 Extracting 46.24MB
+ 1a46b6232269 Extracting 54.59MB
+ 1a46b6232269 Extracting 59.6MB
+ 1a46b6232269 Extracting 67.96MB
+ 1a46b6232269 Extracting 76.32MB
+ 1a46b6232269 Extracting 79.1MB
+ 1a46b6232269 Extracting 80.22MB
+ 1a46b6232269 Extracting 83.56MB
+ 1a46b6232269 Extracting 88.01MB
+ 1a46b6232269 Extracting 93.03MB
+ 1a46b6232269 Extracting 96.37MB
+ 1a46b6232269 Extracting 106.4MB
+ 1a46b6232269 Extracting 109.9MB
+ 1a46b6232269 Pull complete 0B
+ f6a6b8d5cd43 Extracting 9.953kB
+ f6a6b8d5cd43 Extracting 9.953kB
+ f6a6b8d5cd43 Pull complete 0B
+ 1bf010fe2356 Extracting 128B
+ 1bf010fe2356 Extracting 128B
+ 1bf010fe2356 Pull complete 0B
+ a0af9521f8f8 Extracting 168B
+ a0af9521f8f8 Extracting 168B
+ a0af9521f8f8 Pull complete 0B
+ 421e938fbd20 Extracting 6.11kB
+ 421e938fbd20 Extracting 6.11kB
+ 421e938fbd20 Pull complete 0B
+ db79c5eec36c Extracting 184B
+ db79c5eec36c Extracting 184B
+ db79c5eec36c Pull complete 0B
+ Image postgres:17-alpine Pulled 
+ Image domashka-07-app Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 552B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 448B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 123B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 63B done
+#6 DONE 0.0s
+
+#7 [2/5] WORKDIR /app
+#7 CACHED
+
+#8 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#8 CACHED
+
+#9 [3/5] COPY requirements.txt .
+#9 CACHED
+
+#10 [5/5] COPY app.py .
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 writing image sha256:6602cab2e36116d8d27ad7134eff1a5e3c458419bc94b6f44955ec5bbffe4646 done
+#11 naming to docker.io/library/domashka-07-app done
+#11 DONE 0.0s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image domashka-07-app Built 
+ Network domashka-07_default Creating 
+ Network domashka-07_default Created 
+ Volume domashka-07_db-data Creating 
+ Volume domashka-07_db-data Created 
+ Container domashka-07-db-1 Creating 
+ Container domashka-07-db-1 Created 
+ Container domashka-07-app-1 Creating 
+ Container domashka-07-app-1 Created 
+ Container domashka-07-db-1 Starting 
+ Container domashka-07-db-1 Started 
+ Container domashka-07-db-1 Waiting 
+ Container domashka-07-db-1 Healthy 
+ Container domashka-07-app-1 Starting 
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint domashka-07-app-1 (954e0a77b4d8305cd6248b4730999ebbf88ac40eef1ba85b2b505997d85df512): Bind for 0.0.0.0:8000 failed: port is already allocated

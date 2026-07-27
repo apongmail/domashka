@@ -1,0 +1,28 @@
+=== Варіант Б: depends_on без умови, чистий том (перший запуск бази) ===
+ Network domashka-07_default Creating 
+ Network domashka-07_default Created 
+ Volume domashka-07_db-data Creating 
+ Volume domashka-07_db-data Created 
+ Container domashka-07-db-1 Creating 
+ Container domashka-07-db-1 Created 
+ Container domashka-07-app-1 Creating 
+ Container domashka-07-app-1 Created 
+ Container domashka-07-db-1 Starting 
+ Container domashka-07-db-1 Started 
+ Container domashka-07-app-1 Starting 
+ Container domashka-07-app-1 Started 
+
+$ docker compose -f compose.broken.yaml ps -a
+NAME                IMAGE                COMMAND                  SERVICE   CREATED         STATUS                     PORTS
+domashka-07-app-1   domashka-07-app      "python app.py"          app       6 seconds ago   Exited (1) 4 seconds ago   
+domashka-07-db-1    postgres:17-alpine   "docker-entrypoint.s…"   db        6 seconds ago   Up 5 seconds               0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+
+$ docker compose logs app (останні рядки):
+Traceback (most recent call last):
+  File "/app/app.py", line 17, in <module>
+    with psycopg.connect(DSN) as conn:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/psycopg/connection.py", line 120, in connect
+    raise last_ex.with_traceback(None)
+psycopg.OperationalError: connection failed: connection to server at "172.22.0.2", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?

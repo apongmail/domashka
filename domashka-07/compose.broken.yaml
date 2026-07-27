@@ -1,0 +1,28 @@
+# «Зламана» версія для пункту 4: healthcheck прибрано, depends_on без умови,
+# порт бази опубліковано на хост (так робити не варто — див. звіт).
+services:
+  app:
+    build: ./app
+    ports:
+      - "8007:8000"
+    environment:
+      DB_HOST: db
+      DB_NAME: visits
+      DB_USER: app
+      DB_PASSWORD: secret
+    depends_on:
+      - db          # лише порядок запуску, готовності бази ніхто не чекає
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: visits
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"   # публікація порту бази — антиприклад
+
+volumes:
+  db-data:

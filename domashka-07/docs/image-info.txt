@@ -1,0 +1,17 @@
+$ docker images domashka07-app
+IMAGE                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+domashka07-app:latest   d25d363c1940        173MB             0B        
+
+$ docker history domashka07-app
+CREATED BY                                      SIZE
+CMD ["python" "app.py"]                         0B
+EXPOSE [8000/tcp]                               0B
+COPY app.py . # buildkit                        1.01kB
+RUN /bin/sh -c pip install --no-cache-dir -r…   28.3MB
+COPY requirements.txt . # buildkit              37B
+WORKDIR /app                                    0B
+CMD ["python3"]                                 0B
+RUN /bin/sh -c set -eux;  for src in idle3 p…   36B
+RUN /bin/sh -c set -eux;   savedAptMark="$(a…   40MB
+ENV PYTHON_SHA256=c08bc65a81971c1dd578318282…   0B
+ENV PYTHON_VERSION=3.12.13                      0B

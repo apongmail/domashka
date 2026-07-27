@@ -1,0 +1,12 @@
+=== Варіант А: healthcheck прибрано, condition: service_healthy лишився ===
+ Network domashka-07_default Creating 
+ Network domashka-07_default Created 
+ Container domashka-07-db-1 Creating 
+ Container domashka-07-db-1 Created 
+ Container domashka-07-app-1 Creating 
+ Container domashka-07-app-1 Created 
+ Container domashka-07-db-1 Starting 
+ Container domashka-07-db-1 Started 
+ Container domashka-07-db-1 Waiting 
+ Container domashka-07-db-1 Error dependency db failed to start
+dependency failed to start: container domashka-07-db-1 has no healthcheck configured

@@ -1,0 +1,17 @@
+=== Полагоджено: повертаємо healthcheck + condition: service_healthy ===
+ Container domashka-07-db-1 Started 
+ Container domashka-07-db-1 Waiting 
+ Container domashka-07-db-1 Healthy 
+ Container domashka-07-app-1 Started 
+ Container domashka-07-db-1 Waiting 
+ Container domashka-07-app-1 Waiting 
+ Container domashka-07-app-1 Healthy 
+ Container domashka-07-db-1 Healthy 
+
+$ curl localhost:8007/
+Привіт!! Це візит номер 1.
+Привіт!! Це візит номер 2.
+$ docker compose ps
+NAME                IMAGE                COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+domashka-07-app-1   domashka-07-app      "python app.py"          app       4 seconds ago   Up Less than a second    0.0.0.0:8007->8000/tcp, [::]:8007->8000/tcp
+domashka-07-db-1    postgres:17-alpine   "docker-entrypoint.s…"   db        4 seconds ago   Up 3 seconds (healthy)   5432/tcp

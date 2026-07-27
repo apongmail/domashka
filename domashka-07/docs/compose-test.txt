@@ -1,0 +1,37 @@
+$ curl localhost:8007/ (x3)
+Привіт!! Це візит номер 4.
+
+$ docker compose ps
+NAME                IMAGE                COMMAND                  SERVICE   CREATED              STATUS                        PORTS
+domashka-07-app-1   domashka-07-app      "python app.py"          app       15 seconds ago       Up 14 seconds                 0.0.0.0:8007->8000/tcp, [::]:8007->8000/tcp
+domashka-07-db-1    postgres:17-alpine   "docker-entrypoint.s…"   db        About a minute ago   Up About a minute (healthy)   5432/tcp
+
+=== Перевірка тому: docker compose down && up ===
+ Container domashka-07-app-1 Stopping 
+ Container domashka-07-app-1 Stopped 
+ Container domashka-07-app-1 Removing 
+ Container domashka-07-app-1 Removed 
+ Container domashka-07-db-1 Stopping 
+ Container domashka-07-db-1 Stopped 
+ Container domashka-07-db-1 Removing 
+ Container domashka-07-db-1 Removed 
+ Network domashka-07_default Removing 
+ Network domashka-07_default Removed 
+ Network domashka-07_default Creating 
+ Network domashka-07_default Created 
+ Container domashka-07-db-1 Creating 
+ Container domashka-07-db-1 Created 
+ Container domashka-07-app-1 Creating 
+ Container domashka-07-app-1 Created 
+ Container domashka-07-db-1 Starting 
+ Container domashka-07-db-1 Started 
+ Container domashka-07-db-1 Waiting 
+ Container domashka-07-db-1 Healthy 
+ Container domashka-07-app-1 Starting 
+ Container domashka-07-app-1 Started 
+ Container domashka-07-db-1 Waiting 
+ Container domashka-07-app-1 Waiting 
+ Container domashka-07-app-1 Healthy 
+ Container domashka-07-db-1 Healthy 
+$ curl localhost:8007/ після перестворення контейнерів:
+Привіт!! Це візит номер 5.
