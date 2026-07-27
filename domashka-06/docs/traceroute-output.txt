@@ -40,3 +40,14 @@ traceroute to ithillel.ua (78.47.64.83), 20 hops max, 48 byte packets
 11  * * *
 12  136.243.181.18  39.472 ms  40.464 ms  40.873 ms
 13  78.47.64.83  43.280 ms  39.540 ms  40.199 ms
+
+=== Перевірка каскаду: старий роутер досі відповідає на обох адресах ===
+$ traceroute -n -w 1 -m 3 10.20.50.1
+traceroute to 10.20.50.1 (10.20.50.1), 3 hops max, 40 byte packets
+ 1  192.168.8.1  2.950 ms  2.070 ms  7.521 ms
+ 2  10.20.50.1  4.595 ms  4.588 ms  4.728 ms
+
+$ traceroute -n -w 1 -m 3 10.20.48.1
+traceroute to 10.20.48.1 (10.20.48.1), 3 hops max, 40 byte packets
+ 1  192.168.8.1  2.754 ms  1.876 ms  2.310 ms
+ 2  10.20.48.1  5.061 ms  4.927 ms  4.406 ms
