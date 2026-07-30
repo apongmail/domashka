@@ -1,83 +1,77 @@
 #0 building with "desktop-linux" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 448B 0.0s done
+#1 transferring dockerfile: 448B done
 #1 DONE 0.0s
 
 #2 [internal] load metadata for docker.io/library/python:3.12-slim
-#2 ...
+#2 DONE 0.7s
 
-#3 [auth] library/python:pull token for registry-1.docker.io
+#3 [internal] load .dockerignore
+#3 transferring context: 123B done
 #3 DONE 0.0s
 
-#2 [internal] load metadata for docker.io/library/python:3.12-slim
-#2 DONE 1.4s
-
-#4 [internal] load .dockerignore
-#4 transferring context: 123B done
+#4 [1/5] FROM docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de
 #4 DONE 0.0s
 
-#5 [1/5] FROM docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de
-#5 DONE 0.0s
+#5 [2/5] WORKDIR /app
+#5 CACHED
 
 #6 [internal] load build context
-#6 transferring context: 1.12kB done
+#6 transferring context: 63B done
 #6 DONE 0.0s
 
-#7 [2/5] WORKDIR /app
-#7 CACHED
+#7 [3/5] COPY requirements.txt .
+#7 DONE 0.0s
 
-#8 [3/5] COPY requirements.txt .
-#8 DONE 0.0s
+#8 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#8 1.482 Collecting flask==3.1.2 (from -r requirements.txt (line 1))
+#8 1.657   Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
+#8 1.704 Collecting psycopg==3.2.10 (from psycopg[binary]==3.2.10->-r requirements.txt (line 2))
+#8 1.742   Downloading psycopg-3.2.10-py3-none-any.whl.metadata (4.6 kB)
+#8 1.788 Collecting blinker>=1.9.0 (from flask==3.1.2->-r requirements.txt (line 1))
+#8 1.823   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+#8 1.870 Collecting click>=8.1.3 (from flask==3.1.2->-r requirements.txt (line 1))
+#8 1.908   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+#8 1.952 Collecting itsdangerous>=2.2.0 (from flask==3.1.2->-r requirements.txt (line 1))
+#8 1.992   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#8 2.039 Collecting jinja2>=3.1.2 (from flask==3.1.2->-r requirements.txt (line 1))
+#8 2.077   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#8 2.187 Collecting markupsafe>=2.1.1 (from flask==3.1.2->-r requirements.txt (line 1))
+#8 2.223   Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.7 kB)
+#8 2.271 Collecting werkzeug>=3.1.0 (from flask==3.1.2->-r requirements.txt (line 1))
+#8 2.307   Downloading werkzeug-3.1.8-py3-none-any.whl.metadata (4.0 kB)
+#8 2.352 Collecting typing-extensions>=4.6 (from psycopg==3.2.10->psycopg[binary]==3.2.10->-r requirements.txt (line 2))
+#8 2.387   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#8 2.581 Collecting psycopg-binary==3.2.10 (from psycopg[binary]==3.2.10->-r requirements.txt (line 2))
+#8 2.617   Downloading psycopg_binary-3.2.10-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl.metadata (3.0 kB)
+#8 2.659 Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+#8 2.745 Downloading psycopg-3.2.10-py3-none-any.whl (206 kB)
+#8 2.825 Downloading psycopg_binary-3.2.10-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (4.6 MB)
+#8 3.187    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 12.8 MB/s eta 0:00:00
+#8 3.227 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+#8 3.267 Downloading click-8.4.2-py3-none-any.whl (119 kB)
+#8 3.311 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#8 3.350 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#8 3.395 Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (24 kB)
+#8 3.433 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#8 3.474 Downloading werkzeug-3.1.8-py3-none-any.whl (226 kB)
+#8 3.505 Installing collected packages: typing-extensions, psycopg-binary, markupsafe, itsdangerous, click, blinker, werkzeug, psycopg, jinja2, flask
+#8 3.996 Successfully installed blinker-1.9.0 click-8.4.2 flask-3.1.2 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.3 psycopg-3.2.10 psycopg-binary-3.2.10 typing-extensions-4.16.0 werkzeug-3.1.8
+#8 3.996 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#8 4.154 
+#8 4.154 [notice] A new release of pip is available: 25.0.1 -> 26.2
+#8 4.154 [notice] To update, run: pip install --upgrade pip
+#8 DONE 4.3s
 
-#9 [4/5] RUN pip install --no-cache-dir -r requirements.txt
-#9 2.093 Collecting flask==3.1.2 (from -r requirements.txt (line 1))
-#9 2.238   Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
-#9 2.288 Collecting psycopg==3.2.10 (from psycopg[binary]==3.2.10->-r requirements.txt (line 2))
-#9 2.324   Downloading psycopg-3.2.10-py3-none-any.whl.metadata (4.6 kB)
-#9 2.369 Collecting blinker>=1.9.0 (from flask==3.1.2->-r requirements.txt (line 1))
-#9 2.411   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
-#9 2.463 Collecting click>=8.1.3 (from flask==3.1.2->-r requirements.txt (line 1))
-#9 2.503   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
-#9 2.552 Collecting itsdangerous>=2.2.0 (from flask==3.1.2->-r requirements.txt (line 1))
-#9 2.601   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
-#9 2.650 Collecting jinja2>=3.1.2 (from flask==3.1.2->-r requirements.txt (line 1))
-#9 2.688   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
-#9 2.819 Collecting markupsafe>=2.1.1 (from flask==3.1.2->-r requirements.txt (line 1))
-#9 2.858   Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.7 kB)
-#9 2.930 Collecting werkzeug>=3.1.0 (from flask==3.1.2->-r requirements.txt (line 1))
-#9 2.965   Downloading werkzeug-3.1.8-py3-none-any.whl.metadata (4.0 kB)
-#9 3.015 Collecting typing-extensions>=4.6 (from psycopg==3.2.10->psycopg[binary]==3.2.10->-r requirements.txt (line 2))
-#9 3.052   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
-#9 3.365 Collecting psycopg-binary==3.2.10 (from psycopg[binary]==3.2.10->-r requirements.txt (line 2))
-#9 3.402   Downloading psycopg_binary-3.2.10-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl.metadata (3.0 kB)
-#9 3.441 Downloading flask-3.1.2-py3-none-any.whl (103 kB)
-#9 3.530 Downloading psycopg-3.2.10-py3-none-any.whl (206 kB)
-#9 3.615 Downloading psycopg_binary-3.2.10-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (4.6 MB)
-#9 4.004    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 11.6 MB/s eta 0:00:00
-#9 4.042 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
-#9 4.081 Downloading click-8.4.2-py3-none-any.whl (119 kB)
-#9 4.155 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
-#9 4.197 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
-#9 4.251 Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (24 kB)
-#9 4.291 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
-#9 4.347 Downloading werkzeug-3.1.8-py3-none-any.whl (226 kB)
-#9 4.406 Installing collected packages: typing-extensions, psycopg-binary, markupsafe, itsdangerous, click, blinker, werkzeug, psycopg, jinja2, flask
-#9 4.988 Successfully installed blinker-1.9.0 click-8.4.2 flask-3.1.2 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.3 psycopg-3.2.10 psycopg-binary-3.2.10 typing-extensions-4.16.0 werkzeug-3.1.8
-#9 4.989 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
-#9 5.146 
-#9 5.146 [notice] A new release of pip is available: 25.0.1 -> 26.1.2
-#9 5.146 [notice] To update, run: pip install --upgrade pip
-#9 DONE 5.3s
+#9 [5/5] COPY app.py .
+#9 DONE 0.0s
 
-#10 [5/5] COPY app.py .
-#10 DONE 0.0s
+#10 exporting to image
+#10 exporting layers 0.1s done
+#10 writing image sha256:86197dd192f1476b9d9167bf1d07395e150c41b26cb4d815cbadc8b0db6ee5b0 done
+#10 naming to docker.io/library/domashka07-app done
+#10 DONE 0.1s
 
-#11 exporting to image
-#11 exporting layers 0.1s done
-#11 writing image sha256:f60184a3260e78c384bce2d8a519344f58d24589d2ab307df48a897721c1846a done
-#11 naming to docker.io/library/domashka07-app done
-#11 DONE 0.1s
-
-View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/77cuj49v71013ghb6xpcy874h
-docker build -t domashka07-app .  0.15s user 0.21s system 4% cpu 7.655 total
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/b0a3sydsctdop4eyew0duhshp
+docker build --no-cache -t domashka07-app .  0.14s user 0.19s system 5% cpu 5.608 total

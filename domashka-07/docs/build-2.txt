@@ -15,7 +15,7 @@
 #4 DONE 0.0s
 
 #5 [internal] load build context
-#5 transferring context: 1.08kB done
+#5 transferring context: 1.50kB done
 #5 DONE 0.0s
 
 #6 [2/5] WORKDIR /app
@@ -31,10 +31,10 @@
 #9 DONE 0.0s
 
 #10 exporting to image
-#10 exporting layers 0.0s done
-#10 writing image sha256:d25d363c1940782892c31a4fb62e97eebd4dabaefe8fd4b5fabe0c2686c73e8b done
+#10 exporting layers done
+#10 writing image sha256:c4a778355cdf45bd968bd500622442c046048d4fcf761cb7beba5e00026690da done
 #10 naming to docker.io/library/domashka07-app done
 #10 DONE 0.0s
 
-View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/lv8lcyl2bz7kfrknkvkfztixe
-docker build -t domashka07-app .  0.14s user 0.20s system 30% cpu 1.091 total
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/160hdye8y19sex5of361x9zz2
+docker build -t domashka07-app .  0.13s user 0.18s system 35% cpu 0.843 total

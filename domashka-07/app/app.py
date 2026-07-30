@@ -21,9 +21,17 @@ with psycopg.connect(DSN) as conn:
 @app.get("/")
 def index():
     with psycopg.connect(DSN) as conn:
-        conn.execute("INSERT INTO visits DEFAULT VALUES")
+        prev = conn.execute("SELECT max(ts) FROM visits").fetchone()[0]
+        ts = conn.execute("INSERT INTO visits DEFAULT VALUES RETURNING ts").fetchone()[0]
         total = conn.execute("SELECT count(*) FROM visits").fetchone()[0]
-    return f"Привіт!! Це візит номер {total}.\n"
+
+    lines = [f"Привіт!! Це візит номер {total}.", f"Час візиту: {ts:%Y-%m-%d %H:%M:%S %Z}."]
+    if prev is not None:
+        delta = ts - prev
+        lines.append(f"З попереднього візиту минуло {delta.total_seconds():.1f} с.")
+    else:
+        lines.append("Це найперший візит!")
+    return "\n".join(lines) + "\n"
 
 
 if __name__ == "__main__":

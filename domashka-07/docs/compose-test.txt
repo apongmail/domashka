@@ -1,10 +1,15 @@
-$ curl localhost:8007/ (x3)
-Привіт!! Це візит номер 4.
+$ curl localhost:8007/ (двічі, з паузою 3 с)
+Привіт!! Це візит номер 28.
+Час візиту: 2026-07-30 21:10:27 UTC.
+З попереднього візиту минуло 42.1 с.
+Привіт!! Це візит номер 29.
+Час візиту: 2026-07-30 21:10:30 UTC.
+З попереднього візиту минуло 3.0 с.
 
 $ docker compose ps
-NAME                IMAGE                COMMAND                  SERVICE   CREATED              STATUS                        PORTS
-domashka-07-app-1   domashka-07-app      "python app.py"          app       15 seconds ago       Up 14 seconds                 0.0.0.0:8007->8000/tcp, [::]:8007->8000/tcp
-domashka-07-db-1    postgres:17-alpine   "docker-entrypoint.s…"   db        About a minute ago   Up About a minute (healthy)   5432/tcp
+NAME                IMAGE                COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+domashka-07-app-1   domashka-07-app      "python app.py"          app       49 seconds ago   Up 45 seconds             0.0.0.0:8007->8000/tcp, [::]:8007->8000/tcp
+domashka-07-db-1    postgres:17-alpine   "docker-entrypoint.s…"   db        49 seconds ago   Up 48 seconds (healthy)   5432/tcp
 
 === Перевірка тому: docker compose down && up ===
  Container domashka-07-app-1 Stopping 
@@ -34,4 +39,6 @@ domashka-07-db-1    postgres:17-alpine   "docker-entrypoint.s…"   db        Ab
  Container domashka-07-app-1 Healthy 
  Container domashka-07-db-1 Healthy 
 $ curl localhost:8007/ після перестворення контейнерів:
-Привіт!! Це візит номер 5.
+Привіт!! Це візит номер 30.
+Час візиту: 2026-07-30 21:10:45 UTC.
+З попереднього візиту минуло 14.4 с.
