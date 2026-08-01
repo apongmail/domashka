@@ -15,6 +15,7 @@
 | 5 | Мережі, ч. 2: підмережі 172.20.0.0/22, VLSM, IPv6, conntrack | [`domashka-05/`](domashka-05/) |
 | 6 | Мережі, ч. 3: DNS, маршрутизація, Wireshark, TLS і сертифікати | [`domashka-06/`](domashka-06/) |
 | 7 | Docker: образ, кеш збірки, compose, healthcheck | [`domashka-07/`](domashka-07/) |
+| lab | PostgreSQL на macOS проти Docker Desktop: сховища даних, lifecycle, benchmark | [`postgres-docker-lab/`](postgres-docker-lab/) |
 
 > Кожна домашка лежить в окремій теці `domashka-NN/`, а файли мають суфікс
 > `_domashka-NN` (напр. `report_domashka-01.md`, `report_domashka-01.pdf`).

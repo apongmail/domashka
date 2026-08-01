@@ -400,6 +400,6 @@ Docker, але вразливий до одруківки в шляху (риз�
 6. Docker Desktop for Mac: архітектура і файлове ширення —
    <https://docs.docker.com/desktop/features/vmm/>
 7. Офіційний образ postgres (Docker Hub) —
-   <https://hub.docker.com/_/postgres>
+   [hub.docker.com/\_/postgres](https://hub.docker.com/_/postgres)
 8. Зміна розкладки PGDATA у postgres:18 —
    <https://github.com/docker-library/postgres/pull/1259>
