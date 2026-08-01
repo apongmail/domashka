@@ -1,0 +1,14 @@
+# Секрети
+.env
+
+# Дані PostgreSQL (host-кластер і bind mount) — ніколи не комітяться
+**/pgdata/
+**/*-pgdata/
+pg-lab-data/
+
+# Дампи та тимчасові файли benchmark
+*.dump
+*.dump.*
+*.sql.gz
+results/tmp/
+*.log

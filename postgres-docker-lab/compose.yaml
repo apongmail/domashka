@@ -1,0 +1,54 @@
+# pg-lab: три Docker-варіанти зберігання даних PostgreSQL.
+# Однаковий образ (postgres:18.4), однакова конфігурація за замовчуванням,
+# відрізняється ТІЛЬКИ спосіб зберігання PGDATA.
+#
+# Запуск окремого варіанта:  docker compose up -d pg-lab-volume
+# Під час benchmark має працювати лише один сервіс одночасно.
+name: pg-lab
+
+x-pg-common: &pg-common
+  image: postgres:18.4
+  environment: &pg-env
+    POSTGRES_USER: lab
+    POSTGRES_DB: lab
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+  # restart policy навмисно НЕ задано ("no"): lifecycle-тести перевіряють
+  # поведінку контейнера без автоперезапуску.
+
+services:
+  # LAYER: PGDATA у writable layer контейнера.
+  # Образ postgres:18 оголошує VOLUME /var/lib/postgresql, тому "просто без
+  # mount" даних у writable layer НЕ дає — Docker створив би анонімний volume.
+  # Щоб дані справді жили в writable layer, PGDATA винесено у /pgdata.
+  pg-lab-layer:
+    <<: *pg-common
+    container_name: pg-lab-layer
+    environment:
+      <<: *pg-env
+      PGDATA: /pgdata
+    ports:
+      - "127.0.0.1:5433:5432"
+
+  # VOLUME: named volume, змонтований у /var/lib/postgresql.
+  # Для postgres:18 монтувати треба саме /var/lib/postgresql (не .../data):
+  # PGDATA за замовчуванням версійний — /var/lib/postgresql/18/docker.
+  pg-lab-volume:
+    <<: *pg-common
+    container_name: pg-lab-volume
+    ports:
+      - "127.0.0.1:5434:5432"
+    volumes:
+      - pg-lab-volume-data:/var/lib/postgresql
+
+  # BIND: bind mount каталогу macOS (шлях задається в .env).
+  pg-lab-bind:
+    <<: *pg-common
+    container_name: pg-lab-bind
+    ports:
+      - "127.0.0.1:5435:5432"
+    volumes:
+      - ${PG_LAB_BIND_DIR:?set PG_LAB_BIND_DIR in .env}:/var/lib/postgresql
+
+volumes:
+  pg-lab-volume-data:
+    name: pg-lab-volume-data
