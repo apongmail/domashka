@@ -1,0 +1,5 @@
+variant,init_seconds,startup_ms,idle_mem_mb,db_size_mb,pgdata_mb
+LAYER,3.7,942,69,456,864
+VOLUME,3.0,837,61,456,864
+BIND,8.7,850,44,456,879
+HOST,5.6,361,73,456,1313

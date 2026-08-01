@@ -1,0 +1,37 @@
+=== Дата ===
+Sat Aug  1 13:10:43 EEST 2026
+
+=== Апаратне забезпечення ===
+      Model Name: MacBook Pro
+      Model Identifier: MacBookPro18,3
+      Chip: Apple M1 Pro
+      Total Number of Cores: 10 (8 Performance and 2 Efficiency)
+      Memory: 32 GB
+
+=== macOS ===
+ProductName:		macOS
+ProductVersion:		26.5.2
+BuildVersion:		25F84
+
+=== Файлова система (корінь) ===
+   Volume Name:               Macintosh HD
+   File System Personality:   APFS
+
+=== Docker Desktop ===
+App version: 4.84.0
+Engine: 29.6.2 (linux/arm64)
+VM resources: CPUs=10, Memory=8216862720 bytes; Storage driver: overlay2; Kernel: 6.12.76-linuxkit
+
+=== PostgreSQL (native, Homebrew) ===
+postgres (PostgreSQL) 18.4 (Homebrew)
+
+=== Образ postgres ===
+Tag: postgres:18.4
+Digest: postgres@sha256:3a82e1f56c8f0f5616a11103ac3d47e632c3938698946a7ad26da0df1334744a
+Arch: arm64
+
+=== data_directory кожного варіанта (SHOW data_directory) ===
+HOST (port 5499): /Users/aponomarov/pg-lab-data/host-pgdata
+LAYER (port 5433): /pgdata
+VOLUME (port 5434): /var/lib/postgresql/18/docker
+BIND (port 5435): /var/lib/postgresql/18/docker
