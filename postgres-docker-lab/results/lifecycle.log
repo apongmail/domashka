@@ -1,0 +1,135 @@
+[13:13:31] === 0. Посів маркерів в усі 4 конфігурації ===
+HOST (port 5499): marker=e19f5b7b-4c52-455f-9e39-3ebddab86af2
+LAYER (port 5433): marker=df844ec5-0790-48fb-86cc-64b6433ed8e1
+VOLUME (port 5434): marker=96296963-c177-43d1-8c48-4ebd035d959d
+BIND (port 5435): marker=5cef1b4a-3e6a-4d85-989a-65e0aad922c1
+[13:13:32] === 1. Restart PostgreSQL (pg_ctl restart / docker restart) ===
+waiting for server to shut down.... done
+server stopped
+waiting for server to start.... done
+server started
+pg-lab-layer
+pg-lab-volume
+pg-lab-bind
+[13:13:35] === 2. Stop / start ===
+waiting for server to shut down.... done
+server stopped
+pg-lab-layer
+pg-lab-volume
+pg-lab-bind
+waiting for server to start.... done
+server started
+pg-lab-layer
+pg-lab-volume
+pg-lab-bind
+[13:13:39] === 3. Restart Docker Desktop — ПРОПУЩЕНО (сторонні контейнери на машині) ===
+[13:13:39] === 4. Видалення контейнерів (docker rm -f, БЕЗ -v) ===
+[13:13:39] Анонімний volume pg-lab-layer (буде осиротілим після rm): e7562f88c17524ba7df6e27f035f36f2420577475f8bdd7238c4d013c6d9926e
+pg-lab-layer
+pg-lab-volume
+pg-lab-bind
+[13:13:40] === 5. Повторне створення (docker compose up -d) ===
+ Container pg-lab-volume Creating 
+ Container pg-lab-bind Creating 
+ Container pg-lab-layer Creating 
+ Container pg-lab-bind Created 
+ Container pg-lab-layer Created 
+ Container pg-lab-volume Created 
+ Container pg-lab-volume Starting 
+ Container pg-lab-bind Starting 
+ Container pg-lab-layer Starting 
+ Container pg-lab-bind Started 
+ Container pg-lab-volume Started 
+ Container pg-lab-layer Started 
+ERROR:  relation "lab_marker" does not exist
+LINE 1: SELECT 1 FROM lab_marker WHERE marker='df844ec5-0790-48fb-86...
+                      ^
+[13:13:43] Пересіюємо маркер LAYER (дані втрачено на кроці 4-5)
+LAYER (port 5433): marker=711d29e3-31a2-4469-98bc-b923898c2a2f
+[13:13:43] === 6. docker compose down (без -v) → up ===
+ Container pg-lab-layer Stopping 
+ Container pg-lab-volume Stopping 
+ Container pg-lab-bind Stopping 
+ Container pg-lab-bind Stopped 
+ Container pg-lab-bind Removing 
+ Container pg-lab-bind Removed 
+ Container pg-lab-volume Stopped 
+ Container pg-lab-volume Removing 
+ Container pg-lab-volume Removed 
+ Container pg-lab-layer Stopped 
+ Container pg-lab-layer Removing 
+ Container pg-lab-layer Removed 
+ Network pg-lab_default Removing 
+ Network pg-lab_default Removed 
+ Network pg-lab_default Creating 
+ Network pg-lab_default Created 
+ Container pg-lab-layer Creating 
+ Container pg-lab-volume Creating 
+ Container pg-lab-bind Creating 
+ Container pg-lab-bind Created 
+ Container pg-lab-volume Created 
+ Container pg-lab-layer Created 
+ Container pg-lab-bind Starting 
+ Container pg-lab-volume Starting 
+ Container pg-lab-layer Starting 
+ Container pg-lab-bind Started 
+ Container pg-lab-layer Started 
+ Container pg-lab-volume Started 
+ERROR:  relation "lab_marker" does not exist
+LINE 1: SELECT 1 FROM lab_marker WHERE marker='711d29e3-31a2-4469-98...
+                      ^
+[13:13:46] Пересіюємо маркер LAYER
+LAYER (port 5433): marker=ba31b6ce-1d22-4403-b3e9-81ed9f51360d
+[13:13:47] === 7. docker compose down -v (ТІЛЬКИ проєкт pg-lab) → up ===
+[13:13:47] Ресурси проєкту pg-lab, які буде видалено:
+pg-lab-bind
+pg-lab-layer
+pg-lab-volume
+pg-lab-volume-data
+ Container pg-lab-bind Stopping 
+ Container pg-lab-volume Stopping 
+ Container pg-lab-layer Stopping 
+ Container pg-lab-bind Stopped 
+ Container pg-lab-bind Removing 
+ Container pg-lab-bind Removed 
+ Container pg-lab-volume Stopped 
+ Container pg-lab-volume Removing 
+ Container pg-lab-volume Removed 
+ Container pg-lab-layer Stopped 
+ Container pg-lab-layer Removing 
+ Container pg-lab-layer Removed 
+ Volume pg-lab-volume-data Removing 
+ Network pg-lab_default Removing 
+ Volume pg-lab-volume-data Removed 
+ Network pg-lab_default Removed 
+ Network pg-lab_default Creating 
+ Network pg-lab_default Created 
+ Volume pg-lab-volume-data Creating 
+ Volume pg-lab-volume-data Created 
+ Container pg-lab-volume Creating 
+ Container pg-lab-bind Creating 
+ Container pg-lab-layer Creating 
+ Container pg-lab-volume Created 
+ Container pg-lab-bind Created 
+ Container pg-lab-layer Created 
+ Container pg-lab-layer Starting 
+ Container pg-lab-volume Starting 
+ Container pg-lab-bind Starting 
+ Container pg-lab-layer Started 
+ Container pg-lab-volume Started 
+ Container pg-lab-bind Started 
+ERROR:  relation "lab_marker" does not exist
+LINE 1: SELECT 1 FROM lab_marker WHERE marker='ba31b6ce-1d22-4403-b3...
+                      ^
+ERROR:  relation "lab_marker" does not exist
+LINE 1: SELECT 1 FROM lab_marker WHERE marker='96296963-c177-43d1-8c...
+                      ^
+[13:13:50] === Готово. Матриця: ===
+action                  HOST       LAYER                   VOLUME     BIND
+Restart                 збережено  збережено               збережено  збережено
+Stop/start              збережено  збережено               збережено  збережено
+Restart Docker Desktop  n/a        пропущено               пропущено  пропущено
+Видалення контейнера    n/a        втрачено (шар знищено)  збережено  збережено
+Повторне створення      n/a        втрачено                збережено  збережено
+compose down            n/a        втрачено                збережено  збережено
+compose down -v         n/a        втрачено                втрачено   збережено

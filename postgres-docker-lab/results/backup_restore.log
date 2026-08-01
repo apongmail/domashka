@@ -1,0 +1,20 @@
+=== HOST: тестові дані (2 млн рядків) ===
+=== HOST: pg_dump -Fc ===
+=== HOST: новий порожній кластер (initdb, port 5498) + pg_restore ===
+waiting for server to start.... done
+server started
+HOST: dump=3.1s restore=1.6s rows=2000000→2000000 marker_ok=1 dump=44MB
+waiting for server to shut down.... done
+server stopped
+=== VOLUME: тестові дані (2 млн рядків) ===
+VOLUME (port 5434): marker=626a1a51-5d92-4d65-a75d-97f5fb5fccc1
+=== VOLUME: pg_dump -Fc (клієнт на macOS, TCP 127.0.0.1) ===
+=== VOLUME: новий контейнер + новий named volume + pg_restore ===
+8222aeab97f83c53a22deef9b2b22e99b362d5e06716b1cab59dfbb7e89c1bb4
+VOLUME: dump=3.5s restore=1.5s rows=2000000→2000000 marker_ok=1 dump=43MB
+pg-lab-volume-restore
+pg-lab-volume-restore-data
+=== Backup/restore завершено ===
+variant  dump_seconds  restore_seconds  rows_source  rows_restored  marker_ok  dump_size_mb
+HOST     3.1           1.6              2000000      2000000        yes        44
+VOLUME   3.5           1.5              2000000      2000000        yes        43

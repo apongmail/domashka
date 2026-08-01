@@ -1,0 +1,75 @@
+############################################################
+# Ризик 1а. Legacy mount point /var/lib/postgresql/data (звичка з PG<=17)
+# postgres:18 детектить це і ВІДМОВЛЯЄТЬСЯ стартувати (fail-fast).
+############################################################
+95da9187081ca506d7d2fdbcdf853ca736ba7e3201dddd07f4e44a1cf9ae2ca0
+-- Статус контейнера:
+Exited (1) 5 seconds ago
+-- Ключові рядки помилки entrypoint:
+Error: in 18+, these Docker images are configured to store database data in a
+       See also https://github.com/docker-library/postgres/pull/1259
+       Counter to that, there appears to be PostgreSQL data in:
+         /var/lib/postgresql/data (unused mount/volume)
+       The suggested container configuration for 18+ is to place a single mount
+$ docker rm -f -v pg-lab-wrongmount
+pg-lab-wrongmount
+$ docker volume rm pg-lab-wrongmount-data
+pg-lab-wrongmount-data
+
+############################################################
+# Ризик 1б. 'Тиха' версія тієї ж помилки: named volume на шляху,
+# який PGDATA не є (/var/lib/pgsql — typo). Контейнер стартує без помилок,
+# але БД живе в АНОНІМНОМУ volume (оголошений VOLUME образу), а не в named.
+############################################################
+ec921cc4ec1f190d28c7325e622da24364cc7b45fbd24432369bf5c312c59420
+-- Реальний data_directory:
+/var/lib/postgresql/18/docker
+-- Mounts контейнера (named volume — на /var/lib/pgsql, АНОНІМНИЙ — на /var/lib/postgresql):
+volume pg-lab-wrong -> /var/lib/pgsql
+volume 47c4225991d6 -> /var/lib/postgresql
+
+-- Видаляємо контейнер (rm -f -v: анонімний volume гине разом із ним) і створюємо знову з ТИМ ЖЕ named volume:
+$ docker rm -f -v pg-lab-wrongmount
+pg-lab-wrongmount
+0fe8c21fdad05678c812594d540e0fd69c07b2df420c8d3745b434716f6fe36f
+-- Чи збереглась таблиця lab_marker, попри 'підключений volume'?
+f
+ВИСНОВОК: дані жили в анонімному volume і втрачені, попри підключений named volume.
+$ docker rm -f -v pg-lab-wrongmount
+pg-lab-wrongmount
+$ docker volume rm pg-lab-wrongmount-data
+pg-lab-wrongmount-data
+
+############################################################
+# Ризик 2. Права доступу на bind mount (без chmod 777)
+# Каталог macOS з правами r-x (555) → PostgreSQL не може писати.
+############################################################
+-- Права на каталозі: dr-xr-xr-x@
+3fc937e40131fdcd76c410989afb147653466fa28315a0a7b6d52ea7f102aa79
+-- Статус контейнера і останні логи:
+Exited (1) 6 seconds ago
+mkdir: cannot create directory ‘/var/lib/postgresql/18’: Permission denied
+-- ПРАВИЛЬНЕ виправлення: chmod 700 власнику (НЕ 777):
+$ docker rm -f -v pg-lab-permdemo
+pg-lab-permdemo
+5c9c984de39064c2ceaeee871a941ee72f268543d096c96a36fc91e8f589348d
+-- Статус після виправлення прав:
+Up 8 seconds
+$ docker rm -f -v pg-lab-permdemo
+pg-lab-permdemo
+
+############################################################
+# Ризик 3. Bind mount прив'язаний до конкретного шляху macOS
+# Опечатка в шляху → Docker мовчки створює ПОРОЖНІЙ каталог,
+# PostgreSQL ініціалізує НОВИЙ кластер — виглядає як втрата даних.
+############################################################
+-- 'Помилковий' шлях: /Users/aponomarov/pg-lab-data/bind-pgdataTYPO (не існує)
+56e9212e8487e4bdc9444a1f357ab36cc4de69f7fd3244a43f7a9fe097a67904
+-- Кластер стартував 'з нуля'. Таблиця lab_marker з реального BIND-кластера:
+f
+-- Docker створив каталог сам: drwxr-xr-x /Users/aponomarov/pg-lab-data/bind-pgdataTYPO
+ВИСНОВОК: жодної помилки не було — просто порожня база. Класична пастка bind mount.
+$ docker rm -f -v pg-lab-wrongpath
+pg-lab-wrongpath
+
+=== Демонстрації ризиків завершено, тимчасові ресурси прибрано ===

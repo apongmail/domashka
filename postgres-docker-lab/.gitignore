@@ -12,3 +12,7 @@ pg-lab-data/
 *.sql.gz
 results/tmp/
 *.log
+# логи-докази експериментів — комітяться свідомо
+!results/lifecycle.log
+!results/risks.log
+!results/backup_restore.log
