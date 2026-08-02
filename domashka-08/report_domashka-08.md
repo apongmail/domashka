@@ -218,11 +218,11 @@ benchmark-прогони), а не «зайві» дані.
 
 ## 7. Графіки
 
-![TPS за варіантами і кількістю клієнтів](../results/charts/tps.svg)
+![TPS за варіантами і кількістю клієнтів](results/charts/tps.svg)
 
-![Середня затримка за варіантами і кількістю клієнтів](../results/charts/latency.svg)
+![Середня затримка за варіантами і кількістю клієнтів](results/charts/latency.svg)
 
-![Пам'ять idle та під навантаженням](../results/charts/memory.svg)
+![Пам'ять idle та під навантаженням](results/charts/memory.svg)
 
 Пам'ять на графіку вище — **різні метрики**: для контейнерів це cgroup
 (`docker stats`, разом із file cache), для HOST — сума RSS процесів, яка
@@ -230,7 +230,7 @@ benchmark-прогони), а не «зайві» дані.
 (звідси нереалістичні 4.3 GB на 32 клієнтах). Коректне порівняння — лише
 порядок величин і динаміка, не абсолютні числа (розділ 10).
 
-![Час запуску PostgreSQL і час ініціалізації pgbench](../results/charts/startup_init.svg)
+![Час запуску PostgreSQL і час ініціалізації pgbench](results/charts/startup_init.svg)
 
 ## 8. Backup і restore
 

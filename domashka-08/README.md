@@ -4,8 +4,8 @@
 writable layer, named volume, bind mount) впливає на збереження даних при
 життєвому циклі контейнера, на продуктивність і на операційні ризики.
 
-Повний звіт: [`report/report.md`](report/report.md) ·
-PDF: [`report/postgres-docker-lab-report.pdf`](report/postgres-docker-lab-report.pdf)
+Повний звіт: [`report_domashka-08.md`](report_domashka-08.md) ·
+PDF: [`report_domashka-08.pdf`](report_domashka-08.pdf)
 
 ## Чотири конфігурації
 
@@ -42,14 +42,15 @@ python3 scripts/60_charts.py    # графіки → results/charts/*.svg
 ## Структура
 
 ```text
-postgres-docker-lab/
-├── compose.yaml          # три Docker-варіанти (відрізняються лише сховищем)
+domashka-08/
+├── compose.yaml            # три Docker-варіанти (відрізняються лише сховищем)
 ├── .env.example
-├── scripts/              # інвентаризація, lifecycle, ризики, backup, benchmark, графіки
-├── results/              # виміри: csv, логи, графіки
+├── scripts/                # інвентаризація, lifecycle, ризики, backup, benchmark, графіки
+├── results/                # виміри: csv, логи, графіки
 │   ├── benchmark.csv
 │   └── charts/
-└── report/               # звіт українською + PDF
+├── report_domashka-08.md   # звіт українською
+└── report_domashka-08.pdf
 ```
 
 ## Головні висновки (докладно у звіті)
